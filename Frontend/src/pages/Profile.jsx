@@ -3,7 +3,8 @@ import axios from "axios";
 import { backend_URL } from "../components/config";
 import { myContext } from "../context/context";
 import { Link, useNavigate } from "react-router-dom";
-import { toast } from "react-hot-toast";
+import { toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 const Profile = () => {
   const [userData, setUserData] = useState(null);
