@@ -5,25 +5,26 @@ import Logout from "./components/Logout";
 import Home from "./components/Home";
 import { Routes, Route } from "react-router-dom";
 import Navbar from "./components/Navbar";
-import Product from "./components/Product";
+import Admin from "./components/Admin";
 
 
 const App = () => {
   const [updateProductData, setUpdateProductData] = useState(0);
+  const [isAuthenticated, setIsAuthenticated] = useState(false);
   return (
     <div className="">
-      <Navbar />
+      <Navbar isAuthenticated={isAuthenticated}/>
       <Routes>
         <Route
           path="/"
           element={<Home updateProductData={updateProductData} />}
         ></Route>
         <Route path="/signup" element={<Signup />}></Route>
-        <Route path="/login" element={<Login />}></Route>
-        <Route path="/logout" element={<Logout />}></Route>
+        <Route path="/login" element={<Login setIsAuthenticated={setIsAuthenticated}/>}></Route>
+        <Route path="/logout" element={<Logout etIsAuthenticated={setIsAuthenticated}/>}></Route>
         <Route
           path="/admin"
-          element={<Product setUpdateProductData={setUpdateProductData} />}
+          element={<Admin setUpdateProductData={setUpdateProductData} />}
         ></Route>
       </Routes>
     </div>

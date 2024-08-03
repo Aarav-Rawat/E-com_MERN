@@ -3,7 +3,7 @@ import productModel from "../models/productModel.js"
 export const createProduct = async (req,res)=>{
     try{
      const {image,model,price} = req.body;
-     const product = await productModel.create({
+    await productModel.create({
           image,
           model,
           price,
@@ -18,7 +18,12 @@ export const createProduct = async (req,res)=>{
  export const getProduct = async (req,res)=>{
      try{
           const products = await productModel.find();
-          res.status(200).send(products);
+          const productData = products.map(product => ({
+            model: product.model,
+            price: product.price,
+            image: product.image.toString('base64'),
+          }));
+          res.status(200).json(productData);
      }
      catch(err){
           res.status(500).send(err.message);

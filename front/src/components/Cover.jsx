@@ -1,17 +1,18 @@
-import React from 'react'
-import { MdOutlineAddShoppingCart } from "react-icons/md";
-import iphoneImg from "../assets/image/iphone.jpg"
+import React from "react";
 
-const Cover = ({imgUrl,price,model}) => {
+const Cover = ({ imgUrl, price, model }) => {
   return (
-    <div className='cover w-40'>
-         <img src={iphoneImg} alt="loading..." />
-         <div className='coverDetails flex justify-between bg-[#C2C2C2] p-2 items-center'>
-            <div>{model} <br /> {price}</div>
-           <MdOutlineAddShoppingCart />
-         </div>
-    </div>
-  )
-}
+    <div className="coverDetails flex flex-col justify-start p-2 items-center w-[15vw] border-2 border-black">
+      <img src={imgUrl} alt="loading..." />
 
-export default Cover
+      <p className="tracking-tighter text-base">{model} Lorem ipsum dolor sit amet consectetur adipisicing elit. Quis, ducimus.</p>
+
+      <span>{price}</span>
+
+      <button className="bg-zinc-800 px-2 py-[1px] text-white rounded-md"> Add to Cart</button>
+
+    </div>
+  );
+};
+
+export default Cover;

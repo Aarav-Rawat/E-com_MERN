@@ -1,22 +1,11 @@
 import mongoose from "mongoose";
 
 const productSchema = mongoose.Schema({
-  image:{
-    type: Buffer,
-    require: true
-  },
-  model: {
-    type: String,
-    require: true
-  },
-  price:{
-    type: Number,
-    require: true
-  }
+  image: Buffer,
+  model: String,
+  price: Number,
+});
 
-    
-})
-
-const product = mongoose.model("product",productSchema);
+const product = mongoose.model("product", productSchema);
 
 export default product;

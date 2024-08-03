@@ -5,6 +5,6 @@ import upload from "../middlewares/multer.js"
 import { isLoggedIn } from "../middlewares/isLoggedIn.js";
 
 router.get("/",getProduct)
-router.post("/create",upload.single("image"),createProduct)
+router.post("/create",upload.single('image'),createProduct)
 
 export default router;

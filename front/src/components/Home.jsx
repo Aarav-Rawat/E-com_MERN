@@ -3,7 +3,6 @@ import Cover from "./Cover";
 import axios from "axios";
 
 const Home = ({ updateProductData }) => {
-   
   const [productData, setProductData] = useState([]);
 
   useEffect(() => {
@@ -24,20 +23,24 @@ const Home = ({ updateProductData }) => {
   }, [updateProductData]);
 
   console.log(productData);
+
   return (
-    <div className="Home h-screen flex mt-10">
-      <div className="coverContainer bg-2 flex flex-wrap gap-5 ml-20">
+    <div className="Home h-screen flex bg-[#E0E6EC]">
+      <div className="coverContainer bg-2 flex flex-wrap gap-5 ml-20 mt-10`">
         {!productData.length ? (
-          <p>No Product Added</p>
+          <p className="text-3xl tracking-tighter ml-[430px] mt-[100px]">No Product Added</p>
         ) : (
-          productData.map((data, index) => (
-            <Cover
-              key={index}
-              imgUrl={data.image.data}
-              model={data.model}
-              price={data.price}
-            />
-          ))
+          productData.map((data, index) => {
+            const base64Image = `data:image/jpeg;base64,${data.image}`;
+            return (
+              <Cover
+                key={index}
+                imgUrl={base64Image}
+                model={data.model}
+                price={data.price}
+              />
+            );
+          })
         )}
       </div>
     </div>

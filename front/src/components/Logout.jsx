@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+import Login from "./Login"
 import axios from "axios";
 
 const Logout = () => {
@@ -12,15 +13,20 @@ const Logout = () => {
           "Content-Type": "application/json",
         },
       });
-      setMsg(response.data);
+      console.log(response.data);
+        setIsAuthenticated(false);
     } catch (error) {
-      setMsg(error.message);
+      console.log(error.message);
     }
   };
 
   logout();
 
-  return <div>{msg}</div>;
+  return (
+    <>
+    <Login/>
+    </>
+  );
 };
 
 export default Logout;
