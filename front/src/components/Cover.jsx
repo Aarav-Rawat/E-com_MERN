@@ -2,10 +2,10 @@ import React from "react";
 
 const Cover = ({ imgUrl, price, model }) => {
   return (
-    <div className="coverDetails flex flex-col justify-start p-2 items-center w-[15vw] border-2 border-black">
+    <div className="coverDetails flex flex-col items-start p-2 gap-2 w-[15vw] ml-10 mt-5 h-fit">
       <img src={imgUrl} alt="loading..." />
 
-      <p className="tracking-tighter text-base">{model} Lorem ipsum dolor sit amet consectetur adipisicing elit. Quis, ducimus.</p>
+      <p className="tracking-tighter text-base">{model}</p>
 
       <span>{price}</span>
 

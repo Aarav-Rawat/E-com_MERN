@@ -1,8 +1,9 @@
 import React, { useEffect, useState } from "react";
 import Login from "./Login"
 import axios from "axios";
+import Signup from "./Signup";
 
-const Logout = () => {
+const Logout = ({setIsAuthenticated}) => {
   const [msg, setMsg] = useState();
 
   const logout = async () => {
@@ -13,7 +14,6 @@ const Logout = () => {
           "Content-Type": "application/json",
         },
       });
-      console.log(response.data);
         setIsAuthenticated(false);
     } catch (error) {
       console.log(error.message);
@@ -24,7 +24,6 @@ const Logout = () => {
 
   return (
     <>
-    <Login/>
     </>
   );
 };

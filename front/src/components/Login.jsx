@@ -43,26 +43,26 @@ const Login = ({ setIsAuthenticated }) => {
       >
         <input
           type="email"
-          placeholder="email"
+          placeholder="E-mail"
           name="email"
           onChange={(e) => {
             setEmail(e.target.value);
           }}
-          className="w-[300px] px-2 py-1 rounded-md"
+          className="w-[300px] px-2 py-1 rounded-md outline-none"
         />
         <input
           type="password"
-          placeholder="password"
+          placeholder="Password"
           name="password"
           onChange={(e) => {
             setPassword(e.target.value);
           }}
-          className="w-[300px] px-2 py-1 rounded-md"
+          className="w-[300px] px-2 py-1 rounded-md outline-none"
         />
         <input
           type="submit"
           value="Login"
-          className="bg-blue-500 px-2 py-1 rounded-xl"
+          className="bg-blue-500 px-2 py-1 rounded-xl outline-none"
         />
       </form>
       <div className="mb-48">

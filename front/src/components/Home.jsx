@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import Cover from "./Cover";
 import axios from "axios";
+axios.defaults.withCredentials = true;
 
 const Home = ({ updateProductData }) => {
   const [productData, setProductData] = useState([]);
@@ -22,25 +23,24 @@ const Home = ({ updateProductData }) => {
     fetchData();
   }, [updateProductData]);
 
-  console.log(productData);
-
   return (
-    <div className="Home h-screen flex bg-[#E0E6EC]">
-      <div className="coverContainer bg-2 flex flex-wrap gap-5 ml-20 mt-10`">
-        {!productData.length ? (
-          <p className="text-3xl tracking-tighter ml-[430px] mt-[100px]">No Product Added</p>
+    <div className="h-full min-h-screen flex">
+      <div className=" flex flex-wrap gap-5">
+        {
+          
+        
+        !productData.length ? (
+          <p className="text-3xl tracking-tighter ml-[500px] mt-[200px]">No Product Added</p>
         ) : (
-          productData.map((data, index) => {
-            const base64Image = `data:image/jpeg;base64,${data.image}`;
-            return (
+          productData.map((data, index) =>  (
               <Cover
                 key={index}
-                imgUrl={base64Image}
+                imgUrl={`http://localhost:3000/images/${data.image}`}
                 model={data.model}
                 price={data.price}
               />
-            );
-          })
+            )
+          )
         )}
       </div>
     </div>

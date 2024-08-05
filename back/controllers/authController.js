@@ -3,8 +3,11 @@ import bcrypt from "bcrypt";
 import genToken from "../utils/genToken.js";
 
 export const createUser = async (req, res) => {
+ 
   try {
-    const { fullname, email, password, contact } = req.body;
+    const { fullname, email, password,admin} = req.body;
+    
+     
     let user = await userModel.findOne({ email });
     if (user) {
       return res.status(500).send("User Already Exist");
@@ -17,12 +20,12 @@ export const createUser = async (req, res) => {
       fullname,
       email,
       password: hashedPassword,
-      contact,
+      isAdmin: admin,
     });
 
     let token = genToken(user);
     res.cookie("token", token);
-    res.status(200).send("User Created");
+    res.status(200).send("Created");
   } catch (err) {
     res.status(500).send(err.message);
   }

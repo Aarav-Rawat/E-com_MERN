@@ -1,52 +1,44 @@
 import React, { useState } from "react";
-import axios from "axios"
+import axios from "axios";
+axios.defaults.withCredentials = true;
 
-
-const Admin = ({setUpdateProductData}) => {
-  const [image, setImage] = useState();
-  const [model, setModel] = useState();
-  const [price, setPrice] = useState();
+const Owner = ({ setUpdateProductData }) => {
+  const [image, setImage] = useState("");
+  const [model, setModel] = useState("");
+  const [price, setPrice] = useState("");
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    try{
+    const formData = new FormData();
+    formData.append("image", image);
+    formData.append("model", model);
+    formData.append("price", price);
+    try {
       const response = await axios.post(
         "http://localhost:3000/product/create",
-        {
-          image,
-          model,
-          price
-        },
-        {
-          headers: {
-            "Content-Type": "application/json",
-          },
-        }
+        formData,
       );
 
-     setUpdateProductData((prev)=>!prev)
-    }
-
-    catch(err){
-       console.log(err.message);
+      setUpdateProductData((prev) => !prev);
+      console.log(response.data);
+    } catch (err) {
+      console.log(err.message);
     }
   };
 
   return (
     <div className="bg-[#E0E6EC] h-screen flex items-center justify-center flex-col">
-      <span className="text-3xl tracking-tighter mb-10]">Create New Cover</span>
+      <span className="text-3xl tracking-tighter mb-10">Create New Cover</span>
       <div className="productDetails">
         <form
           onSubmit={handleSubmit}
           className="flex justify-center items-center flex-col gap-4 mb-56"
-          
         >
           <input
             type="file"
-            placeholder="Upload Image"
             name="image"
             onChange={(e) => {
-              setImage(e.target.value);
+              setImage(e.target.files[0]);
             }}
             className="w-[300px] px-2 py-1 rounded-md"
           />
@@ -71,11 +63,11 @@ const Admin = ({setUpdateProductData}) => {
             className="w-[300px] px-2 py-1 rounded-md"
           />
 
-          <input type="submit" className="bg-blue-500 px-2 py-1 rounded-xl"/>
+          <input type="submit" value="Create" className="bg-blue-500 px-2 py-1 rounded-xl" />
         </form>
       </div>
     </div>
   );
 };
 
-export default Admin;
+export default Owner;

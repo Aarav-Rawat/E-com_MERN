@@ -2,12 +2,12 @@ import React, { useState } from "react";
 import axios from "axios";
 import { Link } from "react-router-dom";
 
-const Signup = () => {
+const Signup = ({setIsAuthenticated}) => {
   const [signupInfo, setSignupInfo] = useState({
     name: "",
     email: "",
-    contact: "",
     password: "",
+    admin: "",
   });
 
   const handleChange = (e) => {
@@ -17,17 +17,19 @@ const Signup = () => {
     setSignupInfo(temp);
   };
 
+  
   const userRegistrationSubmit = async (e) => {
     e.preventDefault();
-    const { fullname, email, contact, password } = signupInfo;
+    const { fullname, email, admin, password } = signupInfo;
+    
     try {
       const response = await axios.post(
         "http://localhost:3000/user/create",
         {
           fullname,
           email,
-          contact,
           password,
+          admin,
         },
         {
           headers: {
@@ -37,6 +39,9 @@ const Signup = () => {
         }
       );
 
+      if(response.data === "Created"){
+        setIsAuthenticated(true);
+      }
       console.log(response.data);
     } catch (err) {
       console.log("Error", err);
@@ -56,43 +61,47 @@ const Signup = () => {
             className="flex items-center justify-between flex-col gap-3 w-full"
           >
             <input
-              className="w-[300px] px-2 py-[6px] rounded-md"
+              className="w-[300px] px-2 py-[6px] rounded-md outline-none"
               type="text"
               placeholder="Fullname"
               name="fullname"
               onChange={handleChange}
             />
             <input
-              className="w-[300px] px-2 py-[6px]  rounded-md"
+              className="w-[300px] px-2 py-[6px] outline-none rounded-md"
               type="email"
               placeholder="Email"
               name="email"
               onChange={handleChange}
             />
             <input
-              className="w-[300px] px-2 py-[6px]  rounded-md"
-              type="number"
-              placeholder="Contact"
-              name="contact"
-              onChange={handleChange}
-            />
-            <input
-              className="w-[300px] px-2 py-[6px]  rounded-md"
+              className="w-[300px] px-2 py-[6px] outline-none rounded-md"
               type="password"
               placeholder="Password"
               name="password"
               onChange={handleChange}
             />
 
+            <div className="text-lg flex gap-2">
+              <label htmlFor="admin">Become Seller</label>
+              <select name="admin"  className="rounded-xl border-none outline-none" onChange={handleChange} >
+                <option value="false">No</option>
+                <option value="true">Yes</option>
+              </select>
+            </div>
+
             <input
               type="submit"
-              value="Create"
-              className="bg-blue-500 px-2 py-1 rounded-xl"
+              value="Signup"
+              className="bg-blue-500 px-2 py-1 rounded-xl outline-none"
             />
           </form>
           <div className="mb-4">
-        Already have a account? <Link className="text-blue-600" to="/login">Login</Link>
-      </div>
+            Already have a account?
+            <Link className="text-blue-600" to="/login">
+              Login
+            </Link>
+          </div>
         </div>
       </div>
     </div>

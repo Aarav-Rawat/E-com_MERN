@@ -1,9 +1,11 @@
 import mongoose from "mongoose";
 
 const productSchema = mongoose.Schema({
-  image: Buffer,
+  image: String,
   model: String,
   price: Number,
+  seller: 
+  { type: mongoose.Schema.Types.ObjectId, ref:"user" }
 });
 
 const product = mongoose.model("product", productSchema);
