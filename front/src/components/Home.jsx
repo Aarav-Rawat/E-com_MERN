@@ -15,6 +15,7 @@ const Home = ({ updateProductData }) => {
           },
         });
         setProductData(response.data);
+        console.log(response.data);
       } catch (err) {
         console.log(err.message);
       }
@@ -30,7 +31,7 @@ const Home = ({ updateProductData }) => {
           
         
         !productData.length ? (
-          <p className="text-3xl tracking-tighter ml-[500px] mt-[200px]">No Product Added</p>
+          <p className="text-3xl tracking-tighter ml-[500px] mt-[200px]">Product Unavailable</p>
         ) : (
           productData.map((data, index) =>  (
               <Cover

@@ -5,7 +5,7 @@ const userSchema = mongoose.Schema({
   email: String,
   password: String,
   isAdmin: Boolean,
-  products: [{ type: mongoose.Schema.Types.ObjectId, ref: "product" }],
+  orders: [{ type: mongoose.Schema.Types.ObjectId, ref: "product" }],
 });
 
 const user = mongoose.model("user", userSchema);

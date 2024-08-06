@@ -4,7 +4,6 @@ import mongoose from "mongoose";
 import userRouter from "./routes/userRouter.js"
 import indexRouter from "./routes/indexRouter.js"
 import productRouter from "./routes/productRouter.js"
-import ownerRouter from "./routes/ownerRouter.js"
 import cors from "cors"
 import cookieParser from "cookie-parser"
 
@@ -37,7 +36,6 @@ try {
 app.use("/",indexRouter);
 app.use("/user",userRouter);
 app.use("/product",productRouter);
-app.use("/owner",ownerRouter);
 
 app.listen(port, () => {
   console.log(`app listening on port ${port}`);
