@@ -5,7 +5,7 @@ import genToken from "../utils/genToken.js";
 export const createUser = async (req, res) => {
  
   try {
-    const { fullname, email, password,admin} = req.body;
+    const { fullname, email, password} = req.body;
     
      
     let user = await userModel.findOne({ email });
@@ -20,12 +20,11 @@ export const createUser = async (req, res) => {
       fullname,
       email,
       password: hashedPassword,
-      isAdmin: admin,
     });
 
     let token = genToken(user);
     res.cookie("token", token);
-    res.status(200).send("Created");
+    res.status(200).send(["Created",fullname]);
   } catch (err) {
     res.status(500).send(err.message);
   }
@@ -47,7 +46,7 @@ export const loginUser = async (req, res) => {
       if (result) {
         const token = genToken(user);
         res.cookie("token", token);
-        return res.status(200).send("Loged-In");
+        return res.status(200).send(["Logedin",user.fullname]);
       }
       res.status(500).send("user not found");
     });

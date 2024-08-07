@@ -1,5 +1,5 @@
 import productModel from "../models/productModel.js";
-import userModel from "../models/userModel.js";
+
 
 export const createProduct = async (req, res) => {
   try {
@@ -18,13 +18,10 @@ export const createProduct = async (req, res) => {
 
 export const getProduct = async (req, res) => {
   try {
-   const products = await productModel.find()
+    const products = await productModel.find();
     res.status(200).json(products);
   } catch (err) {
     res.status(500).send(err.message);
   }
 };
 
-// export const userProfile = (req,res) => {
-    
-// }

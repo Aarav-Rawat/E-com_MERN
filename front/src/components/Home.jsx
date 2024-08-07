@@ -6,6 +6,8 @@ axios.defaults.withCredentials = true;
 const Home = ({ updateProductData }) => {
   const [productData, setProductData] = useState([]);
 
+  
+
   useEffect(() => {
     const fetchData = async () => {
       try {
@@ -39,6 +41,7 @@ const Home = ({ updateProductData }) => {
                 imgUrl={`http://localhost:3000/images/${data.image}`}
                 model={data.model}
                 price={data.price}
+                id={data._id}
               />
             )
           )

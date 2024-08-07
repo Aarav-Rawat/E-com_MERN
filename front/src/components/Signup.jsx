@@ -2,7 +2,8 @@ import React, { useState } from "react";
 import axios from "axios";
 import { Link } from "react-router-dom";
 
-const Signup = ({setIsAuthenticated}) => {
+
+const Signup = ({setIsAuthenticated, setUserName}) => {
   const [signupInfo, setSignupInfo] = useState({
     name: "",
     email: "",
@@ -20,7 +21,7 @@ const Signup = ({setIsAuthenticated}) => {
   
   const userRegistrationSubmit = async (e) => {
     e.preventDefault();
-    const { fullname, email, admin, password } = signupInfo;
+    const { fullname, email, password } = signupInfo;
     
     try {
       const response = await axios.post(
@@ -29,18 +30,18 @@ const Signup = ({setIsAuthenticated}) => {
           fullname,
           email,
           password,
-          admin,
         },
         {
           headers: {
             "Content-Type": "application/json",
           },
-          withCredentials: true,
+         
         }
       );
 
-      if(response.data === "Created"){
+      if(response.data[0] === "Created"){
         setIsAuthenticated(true);
+        setUserName(response.data[1])
       }
       console.log(response.data);
     } catch (err) {
@@ -82,13 +83,6 @@ const Signup = ({setIsAuthenticated}) => {
               onChange={handleChange}
             />
 
-            <div className="text-lg flex gap-2">
-              <label htmlFor="admin">Become Seller</label>
-              <select name="admin"  className="rounded-xl border-none outline-none" onChange={handleChange} >
-                <option value="false">No</option>
-                <option value="true">Yes</option>
-              </select>
-            </div>
 
             <input
               type="submit"

@@ -2,7 +2,9 @@ import React, { useState } from "react";
 import axios from "axios";
 import { Link } from "react-router-dom";
 
-const Login = ({ setIsAuthenticated }) => {
+axios.defaults.withCredentials = true;
+
+const Login = ({ setIsAuthenticated, setUserName }) => {
   const [email, setEmail] = useState();
   const [password, setPassword] = useState();
 
@@ -19,15 +21,15 @@ const Login = ({ setIsAuthenticated }) => {
           headers: {
             "Content-Type": "application/json",
           },
-          withCredentials: true,
         }
       );
 
-      if (response.data === "Loged-In") {
+      if (response.data[0] === "Logedin") {
         setIsAuthenticated(true);
+        setUserName(response.data[1]);
       }
     } catch (err) {
-      console.log("Error", err);
+      console.log("Error", err.message);
     }
   };
 
@@ -66,7 +68,10 @@ const Login = ({ setIsAuthenticated }) => {
         />
       </form>
       <div className="mb-48">
-        Don't have account? <Link className="text-blue-600" to="/signup">SignUp</Link>
+        Don't have account?{" "}
+        <Link className="text-blue-600" to="/signup">
+          SignUp
+        </Link>
       </div>
     </div>
   );
