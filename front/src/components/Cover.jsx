@@ -1,8 +1,8 @@
-import React from "react";
+import React, { useState } from "react";
 import axios from "axios";
 axios.defaults.withCredentials = true;
 
-const Cover = ({ imgUrl, price, model, id, btn }) => {
+const Cover = ({imgUrl,price,model, id, btn }) => {
   const addToCart = async (id) => {
     const response = await axios.post(
       "http://localhost:3000/user/cart",
@@ -18,7 +18,7 @@ const Cover = ({ imgUrl, price, model, id, btn }) => {
   };
 
   return (
-    <div className="coverDetails flex flex-col items-start p-2 gap-2 w-[15vw] ml-10 mt-5 h-fit">
+    <div className="coverDetails flex flex-col items-start p-2 gap-2 w-[15vw] h-fit">
       <img src={imgUrl} alt="loading..." />
 
       <p className="tracking-tighter text-base">{model}</p>
@@ -27,7 +27,7 @@ const Cover = ({ imgUrl, price, model, id, btn }) => {
 
       {
         btn === false  ? (
-          null
+         null
         ) : (
           <button
           onClick={() => addToCart(id)}

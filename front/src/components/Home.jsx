@@ -28,10 +28,8 @@ const Home = ({ updateProductData }) => {
 
   return (
     <div className="h-full min-h-screen flex">
-      <div className=" flex flex-wrap gap-5">
+      <div className=" flex flex-wrap gap-5 items-start">
         {
-          
-        
         !productData.length ? (
           <p className="text-3xl tracking-tighter ml-[500px] mt-[200px]">Product Unavailable</p>
         ) : (

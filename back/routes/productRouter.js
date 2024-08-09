@@ -1,10 +1,11 @@
 import express from "express"
-import { createProduct,getProduct } from "../controllers/productController.js";
+import { createProduct,getProducts,getProduct } from "../controllers/productController.js";
 const router = express.Router();
 import upload from "../middlewares/multer.js"
 import { isLoggedIn } from "../middlewares/isLoggedIn.js";
 
-router.get("/",getProduct)
+router.get("/",getProducts)
+router.get("/getone",getProduct)
 router.post("/create",isLoggedIn,upload.single('image'),createProduct)
 
 export default router; 

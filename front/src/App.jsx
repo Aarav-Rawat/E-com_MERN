@@ -16,6 +16,7 @@ const App = () => {
   const [updateProductData, setUpdateProductData] = useState(0);
   const [isAuthenticated, setIsAuthenticated] = useState(false);
   const [userName, setUserName] = useState(null);
+  
   return (
     <div className="tracking-tighter">
       <Navbar isAuthenticated={isAuthenticated} setIsAuthenticated={setIsAuthenticated} setUserName={setUserName} userName={userName}/>

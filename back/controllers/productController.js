@@ -16,10 +16,19 @@ export const createProduct = async (req, res) => {
   }
 };
 
-export const getProduct = async (req, res) => {
+export const getProducts = async (req, res) => {
   try {
     const products = await productModel.find();
     res.status(200).json(products);
+  } catch (err) {
+    res.status(500).send(err.message);
+  }
+};
+
+export const getProduct = async (req, res) => {
+  try {
+    const product = await productModel.findOne({_id: req.body.id});
+    res.status(200).json(product);
   } catch (err) {
     res.status(500).send(err.message);
   }

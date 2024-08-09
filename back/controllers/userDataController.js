@@ -31,10 +31,34 @@ export const userProfile = async (req, res) => {
     res.status(200).json({
       name: user.fullname,
       email: user.email,
-      admin: user.isAdmin
+      // admin: user.isAdmin.
+      orders: orders
     });
   }
   catch(err){
     res.status(500).send(err.message);
   }
 };
+
+export const userOrder = async(req,res) =>{
+  try{
+
+    const user = await userModel.findOne({email: req.user.email});
+    const cart = user.cart;
+    await userModel.updateOne({email: req.user.email},{
+      $push: {orders: cart},
+      $set: {cart: []}
+    });
+
+     await Promise.all(
+     cart.map(async (id)=>{
+        await productModel.findOneAndUpdate({_id: id},{buyer: user._id});
+     })
+    )
+
+    res.status(200).send("Ordered");
+  }
+  catch(err){
+    res.status(500).send(err.message);
+  }
+}

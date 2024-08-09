@@ -39,7 +39,7 @@ const navbar = ({
             <Link to="/cart">Cart</Link>
           </>
         ) : (
-          <Link to="/signup">Signup</Link>
+          <Link to="/login">Login</Link>
         )}
       </div>
     </div>

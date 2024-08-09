@@ -23,9 +23,23 @@ const Cart = () => {
     fetchUserCart();
   }, []);
 
+  const handleOrder = async () => {
+    try {
+      const response = await axios.post("http://localhost:3000/user/order",{
+        headers: {
+          "Content-Type": "application/json",
+        },
+      });
+      console.log(response);
+    } catch (err) {
+      console.log(err.message);
+
+    }
+  };
+
   return (
-    <div className="h-full min-h-screen flex ">
-      <div className="flex flex-wrap gap-5">
+    <div className="h-full min-h-screen flex flex-col items-center py-5 gap-5">
+      <div className="flex flex-wrap gap-5 ml-28">
         {cart.length > 0 ? (
           cart.map((data, index) => (
             <Cover
@@ -37,11 +51,19 @@ const Cart = () => {
             />
           ))
         ) : (
-          <div className="text-3xl tracking-tighter ml-[500px] mt-[200px]">
+          <div className="text-3xl tracking-tighter mr-[100px] mt-[150px]">
             No Cover Added
           </div>
         )}
       </div>
+      {cart.length > 0 ? (
+        <button
+          className="bg-zinc-800 px-2 py-[1px] text-white rounded-md"
+          onClick={handleOrder}
+        >
+          Place Order
+        </button>
+      ) : null}
     </div>
   );
 };
