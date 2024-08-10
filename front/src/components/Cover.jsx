@@ -1,20 +1,28 @@
 import React, { useState } from "react";
 import axios from "axios";
 axios.defaults.withCredentials = true;
+import {  toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 const Cover = ({imgUrl,price,model, id, btn }) => {
   const addToCart = async (id) => {
-    const response = await axios.post(
-      "http://localhost:3000/user/cart",
-      {
-        productId: id,
-      },
-      {
-        headers: {
-          "Content-Type": "application/json",
+    try{
+
+      const response = await axios.post(
+        "http://localhost:3000/user/cart",
+        {
+          productId: id,
         },
-      }
-    );
+        {
+          headers: {
+            "Content-Type": "application/json",
+          },
+        }
+      );
+      toast.success(response.data);
+    } catch(err){
+      console.log(err.message);
+    }
   };
 
   return (

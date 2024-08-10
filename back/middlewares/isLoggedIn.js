@@ -3,7 +3,7 @@ import jwt from "jsonwebtoken"
 export const isLoggedIn = (req,res,next)=>{
     try{
       if(!req.cookies.token){
-       return res.send("login");
+       return res.status(200).send("login first");
     }
 
      let userData = jwt.verify(req.cookies.token,process.env.JWT_SECRET_KEY);

@@ -2,6 +2,8 @@ import React, { useEffect, useState } from "react";
 import axios from "axios";
 import Cover from "./Cover";
 axios.defaults.withCredentials = true;
+import {  toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 const Cart = () => {
   const [cart, setCart] = useState([]);
@@ -30,7 +32,7 @@ const Cart = () => {
           "Content-Type": "application/json",
         },
       });
-      console.log(response);
+      toast.success(response.data);
     } catch (err) {
       console.log(err.message);
 

@@ -56,7 +56,7 @@ export const userOrder = async(req,res) =>{
      })
     )
 
-    res.status(200).send("Ordered");
+    res.status(200).send("Order Placed");
   }
   catch(err){
     res.status(500).send(err.message);

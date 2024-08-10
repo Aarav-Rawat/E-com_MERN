@@ -10,7 +10,7 @@ export const createUser = async (req, res) => {
      
     let user = await userModel.findOne({ email });
     if (user) {
-      return res.status(500).send("User Already Exist");
+      return res.status(200).send("User Already Exist");
     }
 
     const salt = await bcrypt.genSalt(10);
@@ -26,7 +26,7 @@ export const createUser = async (req, res) => {
     res.cookie("token", token);
     res.status(200).send(["Created",fullname]);
   } catch (err) {
-    res.status(500).send(err.message);
+    res.status(200).send(err.message);
   }
 };
 
@@ -35,12 +35,12 @@ export const loginUser = async (req, res) => {
     const { email, password } = req.body;
     const user = await userModel.findOne({ email });
     if (!user) {
-      return res.status(500).send("user not found");
+      return res.status(200).send("user not found");
     }
 
     bcrypt.compare(password, user.password, function (err, result) {
       if (err) {
-        return res.status(500).send(err.message);
+        return res.status(200).send(err.message);
       }
 
       if (result) {
@@ -48,7 +48,7 @@ export const loginUser = async (req, res) => {
         res.cookie("token", token);
         return res.status(200).send(["Logedin",user.fullname]);
       }
-      res.status(500).send("user not found");
+      res.status(200).send("user not found");
     });
   } catch (err) {
     res.status(500).send(err.message);

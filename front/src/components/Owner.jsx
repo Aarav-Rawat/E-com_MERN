@@ -1,6 +1,8 @@
 import React, { useState } from "react";
 import axios from "axios";
 axios.defaults.withCredentials = true;
+import {  toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 const Owner = ({ setUpdateProductData }) => {
   const [image, setImage] = useState("");
@@ -20,7 +22,7 @@ const Owner = ({ setUpdateProductData }) => {
       );
 
       setUpdateProductData((prev) => !prev);
-      console.log(response.data);
+      toast.success(response.data);
     } catch (err) {
       console.log(err.message);
     }

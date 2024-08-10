@@ -2,6 +2,8 @@ import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import axios from "axios";
 axios.defaults.withCredentials = true;
+import {  toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 const navbar = ({
   isAuthenticated,
@@ -18,6 +20,7 @@ const navbar = ({
       });
       setIsAuthenticated(false);
       setUserName(null);
+      toast.success(response.data);
     } catch (error) {
       console.log(error.message);
     }
@@ -33,7 +36,7 @@ const navbar = ({
         <Link to="/">Home</Link>
         {isAuthenticated ? (
           <>
-            <div onClick={logout}>Logout</div>
+            <button onClick={logout} >Logout</button>
             <Link to="/owner">Owner</Link>
             <Link to={`/profile/${userName}`}>Profile</Link>
             <Link to="/cart">Cart</Link>

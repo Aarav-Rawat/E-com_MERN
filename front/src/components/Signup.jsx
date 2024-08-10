@@ -1,6 +1,8 @@
 import React, { useState } from "react";
 import axios from "axios";
 import { Link } from "react-router-dom";
+import {  toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 
 const Signup = ({setIsAuthenticated, setUserName}) => {
@@ -42,8 +44,9 @@ const Signup = ({setIsAuthenticated, setUserName}) => {
       if(response.data[0] === "Created"){
         setIsAuthenticated(true);
         setUserName(response.data[1])
+        toast.success(response.data[0]);
       }
-      console.log(response.data);
+     toast.error(response.data);
     } catch (err) {
       console.log("Error", err);
     }

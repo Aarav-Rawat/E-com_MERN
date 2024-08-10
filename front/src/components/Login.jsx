@@ -1,6 +1,8 @@
 import React, { useState } from "react";
 import axios from "axios";
 import { Link } from "react-router-dom";
+import {  toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 axios.defaults.withCredentials = true;
 
@@ -24,9 +26,15 @@ const Login = ({ setIsAuthenticated, setUserName }) => {
         }
       );
 
+
+
       if (response.data[0] === "Logedin") {
         setIsAuthenticated(true);
         setUserName(response.data[1]);
+        toast.success(response.data[0]);
+      }
+      else{
+        toast.error(response.data);
       }
     } catch (err) {
       console.log("Error", err.message);
