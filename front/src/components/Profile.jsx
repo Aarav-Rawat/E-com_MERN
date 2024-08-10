@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+import Cover from "./Cover"
 import axios from "axios";
 axios.defaults.withCredentials = true;
 
@@ -19,28 +20,34 @@ const Profile = () => {
   }, []);
 
   return (
-    <div className="p-2 h-screen bg-[#E0E6EC] text-xl">
+    <div className="p-2 min-h-screen text-xl">
       <div className="mt-10 ml-10">
         <div className="flex gap-3">
           Name:
-          <span>
-          {userData.name}
-          </span>
+          <span>{userData.name}</span>
         </div>
         <div className="flex gap-3">
           Email:
-          <span>
-          {userData.email}
-          </span>
+          <span>{userData.email}</span>
         </div>
-        <div className="">Admin: <span>{userData.admin ? "Yes" : "No"}</span></div>
         <div>
-        <span>Your Orders:</span>
-        {
-          userData.orders((data,index)=>(
-            <Cover key={index} btn={false} imgUrl={`http://localhost:3000/images/${data.image}`} price={data.price} model={data.model}/>
-          ))
-        }
+          <span>Your Orders:</span>
+          <div className="flex flex-wrap gap-5 items-start">
+          {userData.orders && userData.orders.length > 0 ? (
+            userData.orders.map((data, index) => (
+              <Cover
+                key={index}
+                btn={false}
+                imgUrl={`http://localhost:3000/images/${data.image}`}
+                price={data.price}
+                model={data.model}
+              />
+            ))
+          ) : (
+            <p>No Orders Yet</p>
+          )}
+          </div>
+          
         </div>
       </div>
     </div>

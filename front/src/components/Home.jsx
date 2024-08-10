@@ -17,7 +17,6 @@ const Home = ({ updateProductData }) => {
           },
         });
         setProductData(response.data);
-        console.log(response.data);
       } catch (err) {
         console.log(err.message);
       }
