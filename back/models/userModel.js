@@ -4,7 +4,10 @@ const userSchema = mongoose.Schema({
   fullname: String,
   email: String,
   password: String,
-  isAdmin: Boolean,
+  isAdmin: {
+    type: Boolean,
+    default: false
+  },
   cart: [{ type: mongoose.Schema.Types.ObjectId, ref: "product" }],
   orders: [{ type: mongoose.Schema.Types.ObjectId, ref: "product" }],
 });

@@ -1,9 +1,14 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import axios from "axios";
-axios.defaults.withCredentials = true;
 import {  toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import { HiOutlineLogin, HiOutlineLogout } from "react-icons/hi";
+import { GrUserAdmin } from "react-icons/gr";
+import { CgProfile } from "react-icons/cg";
+import { FaCartPlus } from "react-icons/fa";
+
+axios.defaults.withCredentials = true;
 
 const navbar = ({
   isAuthenticated,
@@ -29,20 +34,19 @@ const navbar = ({
     <div className=" flex justify-between items-center px-5 h-[8vh] text-xl tracking-tighter ">
       <div>
         <img src="" alt="" />
-        <span className="text-2xl">KIRMADA</span>
+        <Link to="/" className="text-2xl">KIRMADA</Link>
       </div>
 
       <div className="flex space-x-4">
-        <Link to="/">Home</Link>
         {isAuthenticated ? (
           <>
-            <button onClick={logout} >Logout</button>
-            <Link to="/owner">Owner</Link>
-            <Link to={`/profile/${userName}`}>Profile</Link>
-            <Link to="/cart">Cart</Link>
+            <button onClick={logout} ><HiOutlineLogout /></button>
+            <Link to="/owner"><GrUserAdmin /></Link>
+            <Link to={`/profile/${userName}`}><CgProfile /></Link>
+            <Link to="/cart"><FaCartPlus /></Link>
           </>
         ) : (
-          <Link to="/login">Login</Link>
+          <Link to="/login"><HiOutlineLogin /></Link>
         )}
       </div>
     </div>

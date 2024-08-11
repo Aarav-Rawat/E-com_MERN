@@ -44,7 +44,7 @@ const Profile = () => {
               />
             ))
           ) : (
-            <p>No Orders Yet</p>
+            <p className="text-3xl tracking-tighter ml-[500px] mt-[100px]">No Orders Yet</p>
           )}
           </div>
           
