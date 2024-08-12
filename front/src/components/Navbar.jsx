@@ -46,16 +46,16 @@ const navbar = ({
         {isAuthenticated ? (
           <>
             <button onClick={logout} className="flex flex-col items-center justify-center">
-              <HiOutlineLogout className="text-3xl" /> <span className="text-lg">Logout</span>
+              <HiOutlineLogout className="text-3xl" /> <span className="text-base">Logout</span>
             </button>
             <Link to="/owner" className="flex flex-col items-center justify-center">
-              <GrUserAdmin className="text-3xl" /> <span className="text-lg">Admin</span>
+              <GrUserAdmin className="text-3xl" /> <span className="text-base">Admin</span>
             </Link>
             <Link to={`/profile/${userName}`} className="flex flex-col items-center justify-center">
-              <CgProfile className="text-3xl" /> <span className="text-lg"> Profile</span>
+              <CgProfile className="text-3xl" /> <span className="text-base"> Profile</span>
             </Link>
             <Link to="/cart" className="flex flex-col items-center justify-center">
-              <FaCartPlus className="text-3xl" /> <span className="text-xs">Cart</span>
+              <FaCartPlus className="text-3xl" /> <span className="text-base">Cart</span>
             </Link>
           </>
         ) : (
