@@ -22,7 +22,13 @@ const Owner = ({ setUpdateProductData }) => {
       );
 
       setUpdateProductData((prev) => !prev);
-      toast.success(response.data);
+      if(response.data === "login first"){
+        toast.error(response.data);
+      }
+      else{
+
+        toast.success(response.data);
+      }
     } catch (err) {
       console.log(err.message);
     }
