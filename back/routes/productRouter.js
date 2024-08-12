@@ -1,7 +1,7 @@
 import express from "express"
 import { createProduct,getProducts,getProduct } from "../controllers/productController.js";
 const router = express.Router();
-import upload from "../middlewares/multer.js"
+import upload from "../config/multer.js"
 import { isLoggedIn } from "../middlewares/isLoggedIn.js";
 
 router.get("/",getProducts)
