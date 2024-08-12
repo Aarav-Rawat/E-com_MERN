@@ -10,7 +10,7 @@ import connectDb from "./config/mongoDB.js"
 
 const app = express();
 dotenv.config();
-const port = process.env.PORT;
+const port = process.env.PORT || 3000;
 connectDb();
 
 app.use(express.json());
