@@ -10,7 +10,7 @@ const Cart = () => {
   useEffect(() => {
     const fetchUserCart = async () => {
       try {
-        const response = await axios.get("http://localhost:3000/user/cart");
+        const response = await axios.get("https://mobilecover-mern-backend.onrender.com/user/cart");
         if (response.data.length > 0) {
           setCart(response.data);
         } else {
@@ -46,7 +46,7 @@ const Cart = () => {
           cart.map((data, index) => (
             <Cover
               key={index}
-              imgUrl={`http://localhost:3000/images/${data.image}`}
+              imgUrl={`https://mobilecover-mern-backend.onrender.com/images/${data.image}`}
               model={data.model}
               price={data.price}
               btn={false}

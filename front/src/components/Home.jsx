@@ -35,7 +35,7 @@ const Home = ({ updateProductData }) => {
           productData.map((data, index) =>  (
               <Cover
                 key={index}
-                imgUrl={`http://localhost:3000/images/${data.image}`}
+                imgUrl={`https://mobilecover-mern-backend.onrender.com/images/${data.image}`}
                 model={data.model}
                 price={data.price}
                 id={data._id}

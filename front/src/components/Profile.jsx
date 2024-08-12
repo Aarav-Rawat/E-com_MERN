@@ -8,7 +8,7 @@ const Profile = () => {
   useEffect(() => {
     const fetchUserData = async () => {
       try {
-        const response = await axios.get("http://localhost:3000/user/profile");
+        const response = await axios.get("https://mobilecover-mern-backend.onrender.com/user/profile");
 
         setUserData(response.data);
       } catch (err) {
