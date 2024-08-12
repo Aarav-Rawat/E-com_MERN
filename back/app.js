@@ -17,11 +17,11 @@ app.use(express.json());
 app.use(express.static('public'));
 app.use(express.urlencoded({ extended: true }));
 app.use(cookieParser());
+app.use(cors(corsOptions));
 app.use(cors({
   origin: 'https://kirmada.onrender.com',
   credentials: true,
 }));
- 
 
 app.use("/",indexRouter);
 app.use("/user",userRouter);
