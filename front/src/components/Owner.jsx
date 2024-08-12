@@ -17,7 +17,7 @@ const Owner = ({ setUpdateProductData }) => {
     formData.append("price", price);
     try {
       const response = await axios.post(
-        "http://localhost:3000/product/create",
+        "https://mobilecover-mern-backend.onrender.com/product/create",
         formData,
       );
 

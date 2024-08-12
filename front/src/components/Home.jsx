@@ -11,7 +11,7 @@ const Home = ({ updateProductData }) => {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await axios.get("http://localhost:3000/product", {
+        const response = await axios.get("https://mobilecover-mern-backend.onrender.com/product", {
           headers: {
             "Content-Type": "application/json",
           },

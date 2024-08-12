@@ -38,7 +38,7 @@ const Profile = () => {
               <Cover
                 key={index}
                 btn={false}
-                imgUrl={`http://localhost:3000/images/${data.image}`}
+                imgUrl={`https://mobilecover-mern-backend.onrender.com/images/${data.image}`}
                 price={data.price}
                 model={data.model}
               />

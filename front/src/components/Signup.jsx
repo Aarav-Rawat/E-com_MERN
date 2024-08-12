@@ -27,7 +27,7 @@ const Signup = ({setIsAuthenticated, setUserName}) => {
     
     try {
       const response = await axios.post(
-        "http://localhost:3000/user/create",
+        "https://mobilecover-mern-backend.onrender.com/user/create",
         {
           fullname,
           email,

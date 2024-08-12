@@ -9,7 +9,7 @@ const Cover = ({imgUrl,price,model, id, btn }) => {
     try{
 
       const response = await axios.post(
-        "http://localhost:3000/user/cart",
+        "https://mobilecover-mern-backend.onrender.com/user/cart",
         {
           productId: id,
         },

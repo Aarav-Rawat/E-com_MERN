@@ -27,7 +27,7 @@ const Cart = () => {
 
   const handleOrder = async () => {
     try {
-      const response = await axios.post("http://localhost:3000/user/order",{
+      const response = await axios.post("https://mobilecover-mern-backend.onrender.com/user/order",{
         headers: {
           "Content-Type": "application/json",
         },

@@ -18,7 +18,7 @@ const navbar = ({
 }) => {
   const logout = async () => {
     try {
-      const response = await axios.get("http://localhost:3000/logout", {
+      const response = await axios.get("https://mobilecover-mern-backend.onrender.com/logout", {
         headers: {
           "Content-Type": "application/json",
         },
