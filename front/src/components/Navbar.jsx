@@ -1,8 +1,8 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import axios from "axios";
-import {  toast } from 'react-toastify';
-import 'react-toastify/dist/ReactToastify.css';
+import { toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 import { HiOutlineLogin, HiOutlineLogout } from "react-icons/hi";
 import { GrUserAdmin } from "react-icons/gr";
 import { CgProfile } from "react-icons/cg";
@@ -18,11 +18,14 @@ const navbar = ({
 }) => {
   const logout = async () => {
     try {
-      const response = await axios.get("https://mobilecover-mern-backend.onrender.com/logout", {
-        headers: {
-          "Content-Type": "application/json",
-        },
-      });
+      const response = await axios.get(
+        "https://mobilecover-mern-backend.onrender.com/logout",
+        {
+          headers: {
+            "Content-Type": "application/json",
+          },
+        }
+      );
       setIsAuthenticated(false);
       setUserName(null);
       toast.success(response.data);
@@ -31,22 +34,34 @@ const navbar = ({
     }
   };
   return (
-    <div className=" flex justify-between items-center px-5 h-[8vh] text-xl tracking-tighter ">
+    <div className=" flex justify-between items-center px-5 h-[10vh] text-xl tracking-tighter ">
       <div>
         <img src="" alt="" />
-        <Link to="/" className="text-2xl">KIRMADA</Link>
+        <Link to="/" className="text-2xl">
+          KIRMADA
+        </Link>
       </div>
 
       <div className="flex space-x-4">
         {isAuthenticated ? (
           <>
-            <button onClick={logout} ><HiOutlineLogout /></button>
-            <Link to="/owner"><GrUserAdmin /></Link>
-            <Link to={`/profile/${userName}`}><CgProfile /></Link>
-            <Link to="/cart"><FaCartPlus /></Link>
+            <button onClick={logout} className="flex flex-col items-center justify-center">
+              <HiOutlineLogout className="text-3xl" /> <span className="text-lg">Logout</span>
+            </button>
+            <Link to="/owner" className="flex flex-col items-center justify-center">
+              <GrUserAdmin className="text-3xl" /> <span className="text-lg">Admin</span>
+            </Link>
+            <Link to={`/profile/${userName}`} className="flex flex-col items-center justify-center">
+              <CgProfile className="text-3xl" /> <span className="text-lg"> Profile</span>
+            </Link>
+            <Link to="/cart" className="flex flex-col items-center justify-center">
+              <FaCartPlus className="text-3xl" /> <span className="text-xs">Cart</span>
+            </Link>
           </>
         ) : (
-          <Link to="/login"><HiOutlineLogin /></Link>
+          <Link to="/login" className="flex flex-col items-center justify-center">
+            <HiOutlineLogin className="text-3xl" /> <span className="text-base">Login</span>
+          </Link>
         )}
       </div>
     </div>
