@@ -16,10 +16,11 @@ const navbar = ({
   setUserName,
   userName,
 }) => {
+  const backendURL = "http://localhost:5173";
   const logout = async () => {
     try {
       const response = await axios.get(
-        "https://mobilecover-mern-backend.onrender.com/logout",
+        `${backendURL}/logout`,
         {
           headers: {
             "Content-Type": "application/json",

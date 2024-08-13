@@ -7,10 +7,11 @@ import 'react-toastify/dist/ReactToastify.css';
 
 const Cart = () => {
   const [cart, setCart] = useState([]);
+  const backendURL = "http://localhost:5173"
   useEffect(() => {
     const fetchUserCart = async () => {
       try {
-        const response = await axios.get("https://mobilecover-mern-backend.onrender.com/user/cart");
+        const response = await axios.get(`${backendURL}/user/cart`);
         if (response.data.length > 0) {
           setCart(response.data);
         } else {
@@ -27,7 +28,7 @@ const Cart = () => {
 
   const handleOrder = async () => {
     try {
-      const response = await axios.post("https://mobilecover-mern-backend.onrender.com/user/order",{
+      const response = await axios.post(`${backendURL}/user/order`,{
         headers: {
           "Content-Type": "application/json",
         },
@@ -46,7 +47,7 @@ const Cart = () => {
           cart.map((data, index) => (
             <Cover
               key={index}
-              imgUrl={`https://mobilecover-mern-backend.onrender.com/images/${data.image}`}
+              imgUrl={`${backendURL}/images/${data.image}`}
               model={data.model}
               price={data.price}
               btn={false}

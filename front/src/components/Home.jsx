@@ -5,13 +5,13 @@ axios.defaults.withCredentials = true;
 
 const Home = ({ updateProductData }) => {
   const [productData, setProductData] = useState([]);
-
+  const backendURL = "http://localhost:5173";
   
 
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await axios.get("https://mobilecover-mern-backend.onrender.com/product", {
+        const response = await axios.get(`${backendURL}/product`, {
           headers: {
             "Content-Type": "application/json",
           },
@@ -35,7 +35,7 @@ const Home = ({ updateProductData }) => {
           productData.map((data, index) =>  (
               <Cover
                 key={index}
-                imgUrl={`https://mobilecover-mern-backend.onrender.com/images/${data.image}`}
+                imgUrl={`${backendURL}/images/${data.image}`}
                 model={data.model}
                 price={data.price}
                 id={data._id}

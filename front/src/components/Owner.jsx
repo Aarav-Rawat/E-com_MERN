@@ -10,6 +10,7 @@ const Owner = ({ setUpdateProductData }) => {
   const [price, setPrice] = useState("");
 
   const handleSubmit = async (e) => {
+    const backendURL = "http://localhost:5173";
     e.preventDefault();
     const formData = new FormData();
     formData.append("image", image);
@@ -17,7 +18,7 @@ const Owner = ({ setUpdateProductData }) => {
     formData.append("price", price);
     try {
       const response = await axios.post(
-        "https://mobilecover-mern-backend.onrender.com/product/create",
+        `${backendURL}/product/create`,
         formData,
       );
 

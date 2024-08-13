@@ -6,6 +6,7 @@ import 'react-toastify/dist/ReactToastify.css';
 
 
 const Signup = ({setIsAuthenticated, setUserName}) => {
+  const backendURL = "http://localhost:5173";
   const [signupInfo, setSignupInfo] = useState({
     name: "",
     email: "",
@@ -27,7 +28,7 @@ const Signup = ({setIsAuthenticated, setUserName}) => {
     
     try {
       const response = await axios.post(
-        "https://mobilecover-mern-backend.onrender.com/user/create",
+       `${backendURL}/user/create`,
         {
           fullname,
           email,

@@ -5,11 +5,12 @@ import {  toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
 const Cover = ({imgUrl,price,model, id, btn }) => {
+  const backendURL = "http://localhost:5173";
   const addToCart = async (id) => {
     try{
 
       const response = await axios.post(
-        "https://mobilecover-mern-backend.onrender.com/user/cart",
+        `${backendURL}/user/cart`,
         {
           productId: id,
         },

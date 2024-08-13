@@ -5,10 +5,11 @@ axios.defaults.withCredentials = true;
 
 const Profile = () => {
   const [userData, setUserData] = useState([]);
+  const backendURL = "http://localhost:5173";
   useEffect(() => {
     const fetchUserData = async () => {
       try {
-        const response = await axios.get("https://mobilecover-mern-backend.onrender.com/user/profile");
+        const response = await axios.get(`${backendURL}/user/profile`);
 
         setUserData(response.data);
       } catch (err) {
