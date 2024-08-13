@@ -10,7 +10,7 @@ const Owner = ({ setUpdateProductData }) => {
   const [price, setPrice] = useState("");
 
   const handleSubmit = async (e) => {
-    const backendURL = "http://localhost:5173";
+    const backendURL = "http://localhost:3000";
     e.preventDefault();
     const formData = new FormData();
     formData.append("image", image);

@@ -9,7 +9,7 @@ axios.defaults.withCredentials = true;
 const Login = ({ setIsAuthenticated, setUserName }) => {
   const [email, setEmail] = useState();
   const [password, setPassword] = useState();
-  const backendURL = "http://localhost:5173";
+  const backendURL = "http://localhost:3000";
 
   const userLoginSubmit = async (e) => {
     e.preventDefault();

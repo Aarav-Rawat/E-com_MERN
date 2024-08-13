@@ -5,7 +5,7 @@ axios.defaults.withCredentials = true;
 
 const Profile = () => {
   const [userData, setUserData] = useState([]);
-  const backendURL = "http://localhost:5173";
+  const backendURL = "http://localhost:3000";
   useEffect(() => {
     const fetchUserData = async () => {
       try {

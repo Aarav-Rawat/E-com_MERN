@@ -7,7 +7,7 @@ import 'react-toastify/dist/ReactToastify.css';
 
 const Cart = () => {
   const [cart, setCart] = useState([]);
-  const backendURL = "http://localhost:5173"
+  const backendURL = "http://localhost:3000"
   useEffect(() => {
     const fetchUserCart = async () => {
       try {

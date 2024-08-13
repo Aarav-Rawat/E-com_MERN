@@ -5,17 +5,14 @@ axios.defaults.withCredentials = true;
 
 const Home = ({ updateProductData }) => {
   const [productData, setProductData] = useState([]);
-  const backendURL = "http://localhost:5173";
+  const backendURL = "http://localhost:3000";
   
 
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await axios.get(`${backendURL}/product`, {
-          headers: {
-            "Content-Type": "application/json",
-          },
-        });
+        const response = await axios.get(`${backendURL}/product`);
+      
         setProductData(response.data);
       } catch (err) {
         console.log(err.message);

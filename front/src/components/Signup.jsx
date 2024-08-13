@@ -6,7 +6,7 @@ import 'react-toastify/dist/ReactToastify.css';
 
 
 const Signup = ({setIsAuthenticated, setUserName}) => {
-  const backendURL = "http://localhost:5173";
+  const backendURL = "http://localhost:3000";
   const [signupInfo, setSignupInfo] = useState({
     name: "",
     email: "",

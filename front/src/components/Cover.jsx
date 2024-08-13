@@ -5,7 +5,7 @@ import {  toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
 const Cover = ({imgUrl,price,model, id, btn }) => {
-  const backendURL = "http://localhost:5173";
+  const backendURL = "http://localhost:3000";
   const addToCart = async (id) => {
     try{
 
