@@ -40,7 +40,7 @@ const Cover = ({imgUrl,price,model, id, btn }) => {
         ) : (
           <button
           onClick={() => addToCart(id)}
-          className="bg-zinc-800 px-2 py-[1px] text-white rounded-md"
+          className="bg-blue-600 px-2 py-[1px] text-white rounded-md"
         >
           Add to Cart
         </button>

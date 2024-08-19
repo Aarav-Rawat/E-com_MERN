@@ -7,6 +7,7 @@ import Navbar from "./components/Navbar";
 import Profile from "./components/Profile";
 import Owner from "./components/Owner"
 import Cart from "./components/Cart";
+import Edit from "./components/Edit"
 import axios from "axios";
 axios.defaults.withCredentials = true;
 
@@ -39,6 +40,7 @@ const App = () => {
         ></Route>
         <Route path="/profile/:username" element={<Profile setUserName={setUserName}/>}></Route>
         <Route path="/cart" element={<Cart />}></Route>
+        <Route path="/edit" element={<Edit />}></Route>
       </Routes>
     </div>
   );

@@ -1,6 +1,8 @@
 import React, { useEffect, useState } from "react";
 import Cover from "./Cover"
 import axios from "axios";
+import { FaEdit } from "react-icons/fa";
+import { Link } from "react-router-dom";
 axios.defaults.withCredentials = true;
 
 const Profile = () => {
@@ -22,7 +24,8 @@ const Profile = () => {
 
   return (
     <div className="p-2 min-h-screen text-xl">
-      <div className="mt-10 ml-10">
+      <div className=" ml-10">
+        <Link to="/edit" state={{userData}}><FaEdit /></Link>
         <div className="flex gap-3">
           Name:
           <span>{userData.name}</span>
@@ -39,7 +42,7 @@ const Profile = () => {
               <Cover
                 key={index}
                 btn={false}
-                imgUrl={`https://mobilecover-mern-backend.onrender.com/images/${data.image}`}
+                imgUrl={`${backendURL}/images/${data.image}`}
                 price={data.price}
                 model={data.model}
               />

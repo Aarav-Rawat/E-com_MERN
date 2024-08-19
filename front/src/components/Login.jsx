@@ -38,7 +38,7 @@ const Login = ({ setIsAuthenticated, setUserName }) => {
         toast.error(response.data);
       }
     } catch (err) {
-      console.log("Error", err.message);
+      toast.error(err.message);
     }
   };
 

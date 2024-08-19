@@ -23,11 +23,7 @@ export const createUser = async (req, res) => {
     });
 
     let token = genToken(user);
-    res.cookie("token", token,{
-      httpOnly: true,
-      secure: true, 
-      sameSite: 'None', 
-    });
+    res.cookie("token", token);
     res.status(200).send(["Created",fullname]);
   } catch (err) {
     res.status(200).send(err.message);
@@ -41,7 +37,6 @@ export const loginUser = async (req, res) => {
     if (!user) {
       return res.status(200).send("user not found");
     }
-
     bcrypt.compare(password, user.password, function (err, result) {
       if (err) {
         return res.status(200).send(err.message);
@@ -49,11 +44,7 @@ export const loginUser = async (req, res) => {
 
       if (result) {
         const token = genToken(user);
-        res.cookie("token", token,{
-          httpOnly: true,
-          secure: true, 
-          sameSite: 'None', 
-        });
+        res.cookie("token", token);
         return res.status(200).send(["Logedin",user.fullname]);
       }
       res.status(200).send("user not found");

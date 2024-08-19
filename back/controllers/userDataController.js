@@ -26,39 +26,47 @@ export const getCart = async (req, res) => {
 };
 
 export const userProfile = async (req, res) => {
-  try{
-    const user = await userModel.findOne({email: req.user.email}).populate("orders");
-   
+  try {
+    const user = await userModel
+      .findOne({ email: req.user.email })
+      .populate("orders");
+
     res.status(200).json({
       name: user.fullname,
       email: user.email,
-      orders: user.orders
+      orders: user.orders,
     });
-  }
-  catch(err){
+  } catch (err) {
     res.status(500).send(err.message);
   }
 };
 
-export const userOrder = async(req,res) =>{
-  try{
-
-    const user = await userModel.findOne({email: req.user.email});
+export const userOrder = async (req, res) => {
+  try {
+    const user = await userModel.findOne({ email: req.user.email });
     const cart = user.cart;
-    await userModel.updateOne({email: req.user.email},{
-      $push: {orders: cart},
-      $set: {cart: []}
-    });
+    await userModel.updateOne(
+      { email: req.user.email },
+      {
+        $push: { orders: cart },
+        $set: { cart: [] },
+      }
+    );
 
-     await Promise.all(
-     cart.map(async (id)=>{
-        await productModel.findOneAndUpdate({_id: id},{buyer: user._id});
-     })
-    )
+    await Promise.all(
+      cart.map(async (id) => {
+        await productModel.findOneAndUpdate({ _id: id }, { buyer: user._id });
+      })
+    );
 
     res.status(200).send("Order Placed");
-  }
-  catch(err){
+  } catch (err) {
     res.status(500).send(err.message);
   }
-}
+};
+
+export const updateUser = async (req, res) => {
+   await userModel.updateOne({email: req.body.prevEmail},
+    
+   )
+};

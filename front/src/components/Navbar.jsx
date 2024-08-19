@@ -39,7 +39,8 @@ const navbar = ({
       <div>
         <img src="" alt="" />
         <Link to="/" className="text-2xl">
-          KIRMADA
+          Shop 
+          <span>by Verzatile</span>
         </Link>
       </div>
 
