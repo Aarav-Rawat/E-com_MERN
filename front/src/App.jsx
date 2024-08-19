@@ -15,11 +15,11 @@ axios.defaults.withCredentials = true;
 const App = () => {
  
   const [updateProductData, setUpdateProductData] = useState(0);
-  const [isAuthenticated, setIsAuthenticated] = useState(false);
+  const [isAuthenticated, setIsAuthenticated] = useState(true);
   const [userName, setUserName] = useState(null);
   
   return (
-    <div className="tracking-tighter">
+    <div className="tracking-tighter bg-[#E0E6EC]">
       <Navbar isAuthenticated={isAuthenticated} setIsAuthenticated={setIsAuthenticated} setUserName={setUserName} userName={userName}/>
       <Routes>
         <Route

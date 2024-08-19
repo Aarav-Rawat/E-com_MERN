@@ -5,20 +5,27 @@ axios.defaults.withCredentials = true;
 
 const Edit = () => {
   const location = useLocation();
+  console.log(location.state);
   const { userData } = location.state || {};
   const backendURL = "http://localhost:3000";
   const [newUserData, setnewUserData] = useState()
 
 const handleEdit = ()=>{
-   const response = axios.post(backendURL + "/user/edit",
-    {
-        
-    }
-    ,{
-    headers:{
-      "Content-Type": "application/json"
-    }
-   })
+  try{
+
+    const response = axios.post(backendURL + "/user/edit",
+     {
+         
+     }
+     ,{
+     headers:{
+       "Content-Type": "application/json"
+     }
+    })
+  }
+  catch(err){
+    
+  }
 }
 
   return (
@@ -34,7 +41,7 @@ const handleEdit = ()=>{
       <input type="email" placeholder={userData.email} className='outline-none border-none rounded-md px-2'/>
     </div>
     </div>
-    <button onClick={handleEdit} className='bg-blue-600 px-2 py-[1px] text-white rounded-md ml-[30%] mt-10'>Edit</button>
+    <button onClick={handleEdit} className='bg-blue-600 px-2 py-[1px] text-white rounded-md ml-[50%] mt-10'>Edit</button>
     </div>
   )
 }

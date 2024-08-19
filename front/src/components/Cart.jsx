@@ -55,7 +55,7 @@ const Cart = () => {
           ))
         ) : (
           <div className="text-3xl tracking-tighter mr-[100px] mt-[150px]">
-            No Cover Added
+            No Product Added
           </div>
         )}
       </div>

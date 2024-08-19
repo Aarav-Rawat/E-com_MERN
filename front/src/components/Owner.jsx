@@ -37,7 +37,7 @@ const Owner = ({ setUpdateProductData }) => {
 
   return (
     <div className="bg-[#E0E6EC] h-screen flex items-center justify-center flex-col">
-      <span className="text-3xl tracking-tighter mb-10">Create New Cover</span>
+      <span className="text-3xl tracking-tighter mb-10">Create New Product</span>
       <div className="productDetails">
         <form
           onSubmit={handleSubmit}

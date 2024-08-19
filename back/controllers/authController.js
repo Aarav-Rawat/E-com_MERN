@@ -3,7 +3,7 @@ import bcrypt from "bcrypt";
 import genToken from "../utils/genToken.js";
 
 export const createUser = async (req, res) => {
-  console.log(req.body);
+ 
   try {
     const { fullname, email, password,seller} = req.body;
      

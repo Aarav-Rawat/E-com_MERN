@@ -42,7 +42,7 @@ const Signup = ({ setIsAuthenticated, setUserName }) => {
       );
 
       if (response.data[0] === "Created") {
-        setIsAuthenticated(true);
+        // setIsAuthenticated(true);
         setUserName(response.data[1]);
         toast.success(response.data[0]);
       }
@@ -57,7 +57,7 @@ const Signup = ({ setIsAuthenticated, setUserName }) => {
       <div className="container flex items-center justify-around mt-16">
         <div className="log-in flex items-center justify-between flex-col gap-2">
           <span className="text-3xl tracking-tighter">
-            welcome to <span className="text-blue-600 font-bold">Kirmada</span>
+            welcome to <span className="text-blue-600 font-bold">Verzatile</span>
           </span>
           <span className="text-xl tracking-tighter">Create your Account</span>
           <form

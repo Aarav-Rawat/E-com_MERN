@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
-import { FaEdit } from "react-icons/fa";
 import { Link } from "react-router-dom";
 import Product from "./Product"
 axios.defaults.withCredentials = true;
@@ -14,6 +13,7 @@ const Profile = () => {
         const response = await axios.get(`${backendURL}/user/profile`);
 
         setUserData(response.data);
+        console.log(response.data)
       } catch (err) {
         console.log(err.message);
       }
@@ -25,7 +25,7 @@ const Profile = () => {
   return (
     <div className="p-2 min-h-screen text-xl">
       <div className=" ml-10">
-        <Link to="/edit" state={{userData}}><FaEdit /></Link>
+    
         <div className="flex gap-3">
           Name:
           <span>{userData.name}</span>
@@ -52,6 +52,9 @@ const Profile = () => {
           )}
           </div>
           
+        </div>
+        <div className="ml-[45%] mt-[10%]">
+        <Link to="/edit" state={{userData}} className="bg-blue-600 px-2 py-[1px] text-white rounded-md ">Edit</Link>
         </div>
       </div>
     </div>

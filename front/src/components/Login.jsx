@@ -30,7 +30,7 @@ const Login = ({ setIsAuthenticated, setUserName }) => {
 
 
       if (response.data[0] === "Logedin") {
-        setIsAuthenticated(true);
+        // setIsAuthenticated(true);
         setUserName(response.data[1]);
         toast.success(response.data[0]);
       }
@@ -45,7 +45,7 @@ const Login = ({ setIsAuthenticated, setUserName }) => {
   return (
     <div className="flex items-center justify-center  flex-col gap-2 h-screen bg-[#E0E6EC]">
       <span className="text-3xl tracking-tighter">
-        welcome to <span className="text-blue-600 font-bold">Kirmada</span>
+        welcome to <span className="text-blue-600 font-bold">Verzatile</span>
       </span>
       <span className="text-xl tracking-tighter">Enter Account Details</span>
       <form
