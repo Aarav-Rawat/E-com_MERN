@@ -1,17 +1,16 @@
 import React, { useState } from "react";
 import axios from "axios";
 import { Link } from "react-router-dom";
-import {  toast } from 'react-toastify';
-import 'react-toastify/dist/ReactToastify.css';
+import { toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
-
-const Signup = ({setIsAuthenticated, setUserName}) => {
+const Signup = ({ setIsAuthenticated, setUserName }) => {
   const backendURL = "http://localhost:3000";
   const [signupInfo, setSignupInfo] = useState({
     name: "",
     email: "",
     password: "",
-    admin: "",
+    seller: "",
   });
 
   const handleChange = (e) => {
@@ -21,33 +20,33 @@ const Signup = ({setIsAuthenticated, setUserName}) => {
     setSignupInfo(temp);
   };
 
-  
   const userRegistrationSubmit = async (e) => {
     e.preventDefault();
-    const { fullname, email, password } = signupInfo;
+    console.log(signupInfo);
+    const { fullname, email, password ,seller} = signupInfo;
     
     try {
       const response = await axios.post(
-       `${backendURL}/user/create`,
+        `${backendURL}/user/create`,
         {
           fullname,
           email,
           password,
+          seller
         },
         {
           headers: {
             "Content-Type": "application/json",
           },
-         
         }
       );
 
-      if(response.data[0] === "Created"){
+      if (response.data[0] === "Created") {
         setIsAuthenticated(true);
-        setUserName(response.data[1])
+        setUserName(response.data[1]);
         toast.success(response.data[0]);
       }
-     toast.error(response.data);
+      toast.error(response.data);
     } catch (err) {
       console.log("Error", err);
     }
@@ -87,6 +86,17 @@ const Signup = ({setIsAuthenticated, setUserName}) => {
               onChange={handleChange}
             />
 
+            <div className="text-lg flex gap-2">
+              <label htmlFor="admin">Become Seller</label>
+              <select
+                name="seller"
+                className="rounded-xl border-none outline-none"
+                onChange={handleChange}
+              >
+                <option value="false">No</option>
+                <option value="true">Yes</option>
+              </select>
+            </div>
 
             <input
               type="submit"

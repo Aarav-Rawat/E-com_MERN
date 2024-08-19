@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from "react";
-import Cover from "./Cover"
 import axios from "axios";
 import { FaEdit } from "react-icons/fa";
 import { Link } from "react-router-dom";
+import Product from "./Product"
 axios.defaults.withCredentials = true;
 
 const Profile = () => {
@@ -39,7 +39,7 @@ const Profile = () => {
           <div className="flex flex-wrap gap-5 items-start">
           {userData.orders && userData.orders.length > 0 ? (
             userData.orders.map((data, index) => (
-              <Cover
+              <Product
                 key={index}
                 btn={false}
                 imgUrl={`${backendURL}/images/${data.image}`}

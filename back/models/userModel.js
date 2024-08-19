@@ -4,12 +4,13 @@ const userSchema = mongoose.Schema({
   fullname: String,
   email: String,
   password: String,
-  isAdmin: {
+  isSeller: {
     type: Boolean,
     default: false
   },
   cart: [{ type: mongoose.Schema.Types.ObjectId, ref: "product" }],
   orders: [{ type: mongoose.Schema.Types.ObjectId, ref: "product" }],
+  products: [{ type: mongoose.Schema.Types.ObjectId, ref: "product" }],
 });
 
 const user = mongoose.model("user", userSchema);

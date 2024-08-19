@@ -3,10 +3,9 @@ import bcrypt from "bcrypt";
 import genToken from "../utils/genToken.js";
 
 export const createUser = async (req, res) => {
- 
+  console.log(req.body);
   try {
-    const { fullname, email, password} = req.body;
-    
+    const { fullname, email, password,seller} = req.body;
      
     let user = await userModel.findOne({ email });
     if (user) {
@@ -15,11 +14,12 @@ export const createUser = async (req, res) => {
 
     const salt = await bcrypt.genSalt(10);
     const hashedPassword = await bcrypt.hash(password, salt);
-
+  
     user = await userModel.create({
       fullname,
       email,
       password: hashedPassword,
+      isSeller: seller
     });
 
     let token = genToken(user);

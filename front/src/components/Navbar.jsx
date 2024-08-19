@@ -39,8 +39,8 @@ const navbar = ({
       <div>
         <img src="" alt="" />
         <Link to="/" className="text-2xl">
-          Shop 
-          <span>by Verzatile</span>
+          Shopz
+          {/* <span className="">by Verzatile</span> */}
         </Link>
       </div>
 

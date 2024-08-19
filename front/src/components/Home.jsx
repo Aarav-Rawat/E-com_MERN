@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
-import Cover from "./Cover";
+
 import axios from "axios";
+import Product from "./Product";
 axios.defaults.withCredentials = true;
 
 const Home = ({ updateProductData }) => {
@@ -30,7 +31,7 @@ const Home = ({ updateProductData }) => {
           <p className="text-3xl tracking-tighter ml-[500px] mt-[200px]">Product Unavailable</p>
         ) : (
           productData.map((data, index) =>  (
-              <Cover
+              <Product
                 key={index}
                 imgUrl={`${backendURL}/images/${data.image}`}
                 model={data.model}

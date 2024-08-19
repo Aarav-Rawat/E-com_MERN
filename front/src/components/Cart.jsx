@@ -1,9 +1,9 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
-import Cover from "./Cover";
 axios.defaults.withCredentials = true;
 import {  toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import Product from "./Product";
 
 const Cart = () => {
   const [cart, setCart] = useState([]);
@@ -45,7 +45,7 @@ const Cart = () => {
       <div className="flex flex-wrap gap-5 ml-28">
         {cart.length > 0 ? (
           cart.map((data, index) => (
-            <Cover
+            <Product
               key={index}
               imgUrl={`${backendURL}/images/${data.image}`}
               model={data.model}
