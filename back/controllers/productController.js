@@ -1,14 +1,21 @@
 import productModel from "../models/productModel.js";
+import userModel from "../models/userModel.js";
 
 
 export const createProduct = async (req, res) => {
   try {
     const { model, price } = req.body;
+
     const product = await productModel.create({
       image: req.file.filename,
       model,
       price,
+      owner: req.user._id
     });
+
+    await userModel.updateOne({email: req.user.email},
+      {$push: {products: product._id}}
+    )
 
     res.status(200).send("product created");
   } catch (err) {

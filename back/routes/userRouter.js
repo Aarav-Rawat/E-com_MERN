@@ -7,9 +7,9 @@ const router = express.Router();
 router.post('/create',createUser);
 router.post('/login',loginUser);
 router.post('/cart',isLoggedIn,addToCart);
-router.get('/cart',getCart);
+router.get('/cart',isLoggedIn,getCart);
 router.get('/profile',isLoggedIn,userProfile);
-router.post('/order',userOrder);
+router.post('/order',isLoggedIn,userOrder);
 router.post('/edit',isLoggedIn,updateUser);
 
 export default router;

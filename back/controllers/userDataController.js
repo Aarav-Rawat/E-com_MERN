@@ -56,7 +56,8 @@ export const userOrder = async (req, res) => {
 
     await Promise.all(
       cart.map(async (id) => {
-        await productModel.findOneAndUpdate({ _id: id }, { buyer: user._id });
+        await productModel.findOneAndUpdate({ _id: id },
+           {$push: {buyers: user._id }});
       })
     );
 
