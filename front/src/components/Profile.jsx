@@ -10,10 +10,9 @@ const Profile = () => {
   useEffect(() => {
     const fetchUserData = async () => {
       try {
-        const response = await axios.get(`${backendURL}/user/profile`);
+        const response = await axios.get(backendURL + "/user/profile");
 
         setUserData(response.data);
-        console.log(response.data)
       } catch (err) {
         console.log(err.message);
       }

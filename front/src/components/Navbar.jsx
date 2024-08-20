@@ -1,6 +1,6 @@
+import axios from "axios";
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
-import axios from "axios";
 import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
@@ -32,7 +32,7 @@ const navbar = ({
       <div>
         <img src="" alt="" />
         <Link to="/" className="text-2xl">
-        Verzatile
+          Verzatile
           {/* <span className="">by Verzatile</span> */}
         </Link>
       </div>
@@ -40,18 +40,14 @@ const navbar = ({
       <div className="flex space-x-4">
         {isAuthenticated ? (
           <>
+            <Link to="/login">Login</Link>
             <button onClick={logout}>Logout</button>
             <Link to="/owner">Admin</Link>
             <Link to={`/profile/${userName}`}>Profile</Link>
             <Link to="/cart">Cart</Link>
           </>
         ) : (
-          <Link
-            to="/login"
-           
-          >
-           Login
-          </Link>
+          <Link to="/login">Login</Link>
         )}
       </div>
     </div>

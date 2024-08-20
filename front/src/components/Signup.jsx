@@ -10,7 +10,7 @@ const Signup = ({ setIsAuthenticated, setUserName }) => {
     name: "",
     email: "",
     password: "",
-    seller: "",
+    seller: 'false',
   });
 
   const handleChange = (e) => {
@@ -22,7 +22,6 @@ const Signup = ({ setIsAuthenticated, setUserName }) => {
 
   const userRegistrationSubmit = async (e) => {
     e.preventDefault();
-    console.log(signupInfo);
     const { fullname, email, password ,seller} = signupInfo;
     
     try {
@@ -48,7 +47,7 @@ const Signup = ({ setIsAuthenticated, setUserName }) => {
       }
       toast.error(response.data);
     } catch (err) {
-      console.log("Error", err);
+      toast.error(err.message);
     }
   };
 

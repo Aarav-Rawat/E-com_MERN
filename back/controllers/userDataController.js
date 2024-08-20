@@ -26,6 +26,7 @@ export const getCart = async (req, res) => {
 };
 
 export const userProfile = async (req, res) => {
+  
   try {
     const user = await userModel
       .findOne({ email: req.user.email })
@@ -66,7 +67,21 @@ export const userOrder = async (req, res) => {
 };
 
 export const updateUser = async (req, res) => {
-   await userModel.updateOne({email: req.body.prevEmail},
+  try{
+     const {newName , newEmail} = req.body;
+     console.log(req.body);
+     console.log(req.user);
+   const user = await userModel.findOneAndUpdate(
+    {email: req.user.email},
+      {$set:{fullname: newName, email: newEmail}},
+      { new: true }
+    )
+     console.log(user);
+    res.status(200).send("User Updated");
+  }
+  catch(err){
+    res.status(500).send(err.message);
+  }
     
-   )
+   
 };

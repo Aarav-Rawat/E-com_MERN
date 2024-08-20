@@ -8,8 +8,8 @@ router.post('/create',createUser);
 router.post('/login',loginUser);
 router.post('/cart',isLoggedIn,addToCart);
 router.get('/cart',getCart);
-router.get('/profile',userProfile);
+router.get('/profile',isLoggedIn,userProfile);
 router.post('/order',userOrder);
-router.post('/edit',updateUser);
+router.post('/edit',isLoggedIn,updateUser);
 
 export default router;
