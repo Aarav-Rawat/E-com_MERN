@@ -7,12 +7,11 @@ import Product from "./Product";
 
 const Cart = () => {
   const [cart, setCart] = useState([]);
-  const backendURL = "http://localhost:3000"
   
   useEffect(() => {
     const fetchUserCart = async () => {
       try {
-        const response = await axios.get(`${backendURL}/user/cart`);
+        const response = await axios.get(process.env.backend + "/user/cart");
        
           setCart(response.data);
        

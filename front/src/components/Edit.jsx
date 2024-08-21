@@ -9,7 +9,6 @@ axios.defaults.withCredentials = true;
 const Edit = () => {
   const location = useLocation();
   const { userData } = location.state || {};
-  const backendURL = "http://localhost:3000";
  const [newUserData, setNewUserData] = useState({
    name: userData.name,
    email: userData.email
@@ -30,7 +29,7 @@ const Edit = () => {
     try {
       
       const response = await axios.post(
-        backendURL + "/user/edit",
+        process.env.backend + "/user/edit",
         {
           newName: newUserData.name,
           newEmail: newUserData.email

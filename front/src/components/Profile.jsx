@@ -6,11 +6,10 @@ axios.defaults.withCredentials = true;
 
 const Profile = () => {
   const [userData, setUserData] = useState([]);
-  const backendURL = "http://localhost:3000";
   useEffect(() => {
     const fetchUserData = async () => {
       try {
-        const response = await axios.get(backendURL + "/user/profile");
+        const response = await axios.get( process.env.backend + "/user/profile");
 
         setUserData(response.data);
       } catch (err) {

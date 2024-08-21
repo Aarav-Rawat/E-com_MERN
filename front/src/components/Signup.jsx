@@ -26,7 +26,7 @@ const Signup = ({ setIsAuthenticated, setUserName }) => {
     
     try {
       const response = await axios.post(
-        `${backendURL}/user/create`,
+        process.env.backend + "/user/create",
         {
           fullname,
           email,
@@ -44,6 +44,7 @@ const Signup = ({ setIsAuthenticated, setUserName }) => {
         // setIsAuthenticated(true);
         setUserName(response.data[1]);
         toast.success(response.data[0]);
+        localStorage.setItem("token",response.data[2]);
       }
       toast.error(response.data);
     } catch (err) {

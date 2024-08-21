@@ -24,7 +24,7 @@ export const createUser = async (req, res) => {
 
     let token = genToken(user);
     res.cookie("token", token);
-    res.status(200).send(["Created",fullname]);
+    res.status(200).send(["Created",fullname,token]);
   } catch (err) {
     res.status(200).send(err.message);
   }
@@ -45,7 +45,7 @@ export const loginUser = async (req, res) => {
       if (result) {
         const token = genToken(user);
         res.cookie("token", token);
-        return res.status(200).send(["Logedin",user.fullname]);
+        return res.status(200).send(["Logedin",user.fullname,token]);
       }
       res.status(200).send("user not found");
     });

@@ -10,7 +10,6 @@ const Owner = ({ setUpdateProductData }) => {
   const [price, setPrice] = useState("");
 
   const handleSubmit = async (e) => {
-    const backendURL = "http://localhost:3000";
     e.preventDefault();
     const formData = new FormData();
     formData.append("image", image);
@@ -18,7 +17,7 @@ const Owner = ({ setUpdateProductData }) => {
     formData.append("price", price);
     try {
       const response = await axios.post(
-        `${backendURL}/product/create`,
+        process.env.backend + "/product/create",
         formData,
       );
 

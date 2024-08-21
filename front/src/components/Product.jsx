@@ -5,12 +5,12 @@ import {  toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
 const Product = ({imgUrl,price,model, id, btn }) => {
-  const backendURL = "http://localhost:3000";
+
   const addToCart = async (id) => {
     try{
 
       const response = await axios.post(
-        `${backendURL}/user/cart`,
+        process.env.backend +"/user/cart",
         {
           productId: id,
         },

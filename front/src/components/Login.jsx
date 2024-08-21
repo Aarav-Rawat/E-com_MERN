@@ -9,13 +9,13 @@ axios.defaults.withCredentials = true;
 const Login = ({ setIsAuthenticated, setUserName }) => {
   const [email, setEmail] = useState();
   const [password, setPassword] = useState();
-  const backendURL = "http://localhost:3000";
+
 
   const userLoginSubmit = async (e) => {
     e.preventDefault();
     try {
       const response = await axios.post(
-       `${backendURL}/user/login`,
+        process.env.backend + "/user/login",
         {
           email,
           password,
@@ -33,6 +33,7 @@ const Login = ({ setIsAuthenticated, setUserName }) => {
         // setIsAuthenticated(true);
         setUserName(response.data[1]);
         toast.success(response.data[0]);
+        localStorage.setItem("token",response.data[2]);
       }
       else{
         toast.error(response.data);
