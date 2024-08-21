@@ -40,7 +40,7 @@ const Profile = () => {
               <Product
                 key={index}
                 btn={false}
-                imgUrl={`${backendURL}/images/${data.image}`}
+                imgUrl={process.env.backend + "/images/${data.image}"}
                 price={data.price}
                 model={data.model}
               />

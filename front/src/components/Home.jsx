@@ -33,7 +33,7 @@ const Home = ({ updateProductData }) => {
           productData.map((data, index) =>  (
               <Product
                 key={index}
-                imgUrl={`${backendURL}/images/${data.image}`}
+                imgUrl={process.env.backend + "/images/${data.image}"}
                 model={data.model}
                 price={data.price}
                 id={data._id}

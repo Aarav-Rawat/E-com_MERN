@@ -26,7 +26,7 @@ const Cart = () => {
 
   const handleOrder = async () => {
     try {
-      const response = await axios.post(`${backendURL}/user/order`,{
+      const response = await axios.post(process.env.backend + "/user/order",{
         headers: {
           "Content-Type": "application/json",
         },
