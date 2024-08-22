@@ -19,7 +19,7 @@ const App = () => {
   const [userName, setUserName] = useState(null);
   
   return (
-    <div className="tracking-tighter bg-[#E0E6EC]">
+    <div className="tracking-tighter bg-[#E0E6EC] ">
       <Navbar isAuthenticated={isAuthenticated} setIsAuthenticated={setIsAuthenticated} setUserName={setUserName} userName={userName}/>
       <Routes>
         <Route

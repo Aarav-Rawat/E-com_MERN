@@ -4,6 +4,7 @@ axios.defaults.withCredentials = true;
 import {  toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import Product from "./Product";
+import {backend_URL} from "./config"
 
 const Cart = () => {
   const [cart, setCart] = useState([]);
@@ -11,7 +12,7 @@ const Cart = () => {
   useEffect(() => {
     const fetchUserCart = async () => {
       try {
-        const response = await axios.get(process.env.backend + "/user/cart");
+        const response = await axios.get(backend_URL + "/user/cart");
        
           setCart(response.data);
        
@@ -26,7 +27,7 @@ const Cart = () => {
 
   const handleOrder = async () => {
     try {
-      const response = await axios.post(process.env.backend + "/user/order",{
+      const response = await axios.post(backend_URL + "/user/order",{
         headers: {
           "Content-Type": "application/json",
         },
@@ -45,7 +46,7 @@ const Cart = () => {
           cart.map((data, index) => (
             <Product
               key={index}
-              imgUrl={`${backendURL}/images/${data.image}`}
+              imgUrl={backend_URL + "/images/${data.image}"}
               model={data.model}
               price={data.price}
               btn={false}

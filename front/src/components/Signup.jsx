@@ -3,9 +3,10 @@ import axios from "axios";
 import { Link } from "react-router-dom";
 import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import { backend_URL } from "./config";
 
 const Signup = ({ setIsAuthenticated, setUserName }) => {
-  const backendURL = "http://localhost:3000";
+
   const [signupInfo, setSignupInfo] = useState({
     name: "",
     email: "",
@@ -26,7 +27,7 @@ const Signup = ({ setIsAuthenticated, setUserName }) => {
     
     try {
       const response = await axios.post(
-        process.env.backend + "/user/create",
+        backend_URL + "/user/create",
         {
           fullname,
           email,

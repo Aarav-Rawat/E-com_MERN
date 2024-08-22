@@ -3,6 +3,7 @@ import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import { backend_URL } from "./config";
 
 axios.defaults.withCredentials = true;
 
@@ -14,7 +15,7 @@ const navbar = ({
 }) => {
   const logout = async () => {
     try {
-      const response = await axios.get(process.env.backend + "/logout", {
+      const response = await axios.get(backend_URL+ "/logout", {
         headers: {
           "Content-Type": "application/json",
         },

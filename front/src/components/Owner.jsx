@@ -3,6 +3,7 @@ import axios from "axios";
 axios.defaults.withCredentials = true;
 import {  toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import { backend_URL } from "./config";
 
 const Owner = ({ setUpdateProductData }) => {
   const [image, setImage] = useState("");
@@ -17,7 +18,7 @@ const Owner = ({ setUpdateProductData }) => {
     formData.append("price", price);
     try {
       const response = await axios.post(
-        process.env.backend + "/product/create",
+      backend_URL + "/product/create",
         formData,
       );
 

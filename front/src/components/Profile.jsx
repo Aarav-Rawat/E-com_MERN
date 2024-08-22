@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import axios from "axios";
 import { Link } from "react-router-dom";
 import Product from "./Product"
+import { backend_URL } from "./config";
 axios.defaults.withCredentials = true;
 
 const Profile = () => {
@@ -9,7 +10,7 @@ const Profile = () => {
   useEffect(() => {
     const fetchUserData = async () => {
       try {
-        const response = await axios.get( process.env.backend + "/user/profile");
+        const response = await axios.get( backend_URL + "/user/profile");
 
         setUserData(response.data);
       } catch (err) {
@@ -40,7 +41,7 @@ const Profile = () => {
               <Product
                 key={index}
                 btn={false}
-                imgUrl={process.env.backend + "/images/${data.image}"}
+                imgUrl={backend_URL + "/images/${data.image}"}
                 price={data.price}
                 model={data.model}
               />

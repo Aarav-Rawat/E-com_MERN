@@ -1,9 +1,8 @@
 import React, { useEffect, useState } from "react";
-
 import axios from "axios";
 import Product from "./Product";
 axios.defaults.withCredentials = true;
-
+import {backend_URL} from "./config"
 const Home = ({ updateProductData }) => {
   const [productData, setProductData] = useState([]);
  
@@ -12,7 +11,7 @@ const Home = ({ updateProductData }) => {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await axios.get(process.env.backend + "/product");
+        const response = await axios.get(backend_URL + "/product");
       
         setProductData(response.data);
       } catch (err) {
@@ -33,7 +32,7 @@ const Home = ({ updateProductData }) => {
           productData.map((data, index) =>  (
               <Product
                 key={index}
-                imgUrl={process.env.backend + "/images/${data.image}"}
+                imgUrl={backend_URL + "/images/${data.image}"}
                 model={data.model}
                 price={data.price}
                 id={data._id}

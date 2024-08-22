@@ -3,7 +3,7 @@ import axios from "axios";
 import { Link } from "react-router-dom";
 import {  toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
-
+import {backend_URL} from "./config"
 axios.defaults.withCredentials = true;
 
 const Login = ({ setIsAuthenticated, setUserName }) => {
@@ -15,7 +15,7 @@ const Login = ({ setIsAuthenticated, setUserName }) => {
     e.preventDefault();
     try {
       const response = await axios.post(
-        process.env.backend + "/user/login",
+        backend_URL + "/user/login",
         {
           email,
           password,

@@ -3,6 +3,7 @@ import axios from "axios";
 axios.defaults.withCredentials = true;
 import {  toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import { backend_URL } from "./config";
 
 const Product = ({imgUrl,price,model, id, btn }) => {
 
@@ -10,7 +11,7 @@ const Product = ({imgUrl,price,model, id, btn }) => {
     try{
 
       const response = await axios.post(
-        process.env.backend +"/user/cart",
+        backend_URL +"/user/cart",
         {
           productId: id,
         },

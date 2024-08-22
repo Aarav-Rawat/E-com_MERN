@@ -3,8 +3,8 @@ import React, { useState } from "react";
 import { useLocation } from "react-router-dom";
 import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-
 axios.defaults.withCredentials = true;
+import {backend_URL} from "./config"
 
 const Edit = () => {
   const location = useLocation();
@@ -29,7 +29,7 @@ const Edit = () => {
     try {
       
       const response = await axios.post(
-        process.env.backend + "/user/edit",
+        backend_URL + "/user/edit",
         {
           newName: newUserData.name,
           newEmail: newUserData.email
