@@ -42,7 +42,7 @@ const Cart = () => {
   return (
     <div className="h-full min-h-screen flex flex-col items-center py-5 gap-5">
       <div className="flex flex-wrap gap-5 ml-28">
-        {cart.length > 0 ? (
+        {Array.isArray(cart) && cart.length > 0 ? (
           cart.map((data, index) => (
             <Product
               key={index}
@@ -58,7 +58,7 @@ const Cart = () => {
           </div>
         )}
       </div>
-      {cart.length > 0 ? (
+      {Array.isArray(cart) && cart.length > 0 ? (
         <button
           className="bg-zinc-800 px-2 py-[1px] text-white rounded-md"
           onClick={handleOrder}
