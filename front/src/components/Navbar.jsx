@@ -28,11 +28,11 @@ const navbar = ({
     }
   };
   return (
-    <div className=" flex justify-between items-center px-5 h-[8vh] text-xl tracking-tighter bg-white">
+    <div className=" flex justify-between items-center px-5 h-[8vh] text-xl tracking-tighter bg-[#E0E6EC]">
       <div>
         <img src="" alt="" />
-        <Link to="/" className="text-2xl">
-          Verzatile
+        <Link to="/" className="text-3xl font-bold text-blue-600">
+          Shopz
           {/* <span className="">by Verzatile</span> */}
         </Link>
       </div>
@@ -40,14 +40,14 @@ const navbar = ({
       <div className="flex space-x-4">
         {isAuthenticated ? (
           <>
-            <Link to="/login">Login</Link>
-            <button onClick={logout}>Logout</button>
-            <Link to="/owner">Admin</Link>
-            <Link to={`/profile/${userName}`}>Profile</Link>
-            <Link to="/cart">Cart</Link>
+            <Link  to="/login" className="bg-blue-600 px-2 rounded-xl text-white hover:opacity-85">Login</Link>
+            <button className="bg-blue-600 px-2 rounded-xl text-white hover:opacity-85" onClick={logout}>Logout</button>
+            <Link className="bg-blue-600 px-2 rounded-xl text-white hover:opacity-85" to="/owner">Admin</Link>
+            <Link className="bg-blue-600 px-2 rounded-xl text-white hover:opacity-85" to={`/profile/${userName}`}>Profile</Link>
+            <Link className="bg-blue-600 px-2 rounded-xl text-white hover:opacity-85" to="/cart">Cart</Link>
           </>
         ) : (
-          <Link to="/login">Login</Link>
+          <Link className="bg-blue-600 px-2 rounded-xl text-white hover:opacity-85" to="/login">Login</Link>
         )}
       </div>
     </div>
@@ -55,3 +55,5 @@ const navbar = ({
 };
 
 export default navbar;
+
+
