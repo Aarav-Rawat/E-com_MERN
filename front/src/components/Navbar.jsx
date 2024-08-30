@@ -12,10 +12,14 @@ const navbar = ({
   setIsAuthenticated,
   setUserName,
   userName,
+  isSeller,
+  setIsSeller
 }) => {
+  
+
   const logout = async () => {
     try {
-      const response = await axios.get(backend_URL+ "/logout", {
+      const response = await axios.get(backend_URL + "/logout", {
         headers: {
           "Content-Type": "application/json",
         },
@@ -27,12 +31,13 @@ const navbar = ({
       console.log(error.message);
     }
   };
+
   return (
     <div className=" flex justify-between items-center px-5 h-[8vh] text-xl tracking-tighter bg-[#E0E6EC]">
       <div>
         <img src="" alt="" />
         <Link to="/" className="text-3xl font-bold text-blue-600">
-          Shopz
+          Verzatile
           {/* <span className="">by Verzatile</span> */}
         </Link>
       </div>
@@ -40,14 +45,51 @@ const navbar = ({
       <div className="flex space-x-4">
         {isAuthenticated ? (
           <>
-            <Link  to="/login" className="bg-blue-600 px-2 rounded-xl text-white hover:opacity-85">Login</Link>
-            <button className="bg-blue-600 px-2 rounded-xl text-white hover:opacity-85" onClick={logout}>Logout</button>
-            <Link className="bg-blue-600 px-2 rounded-xl text-white hover:opacity-85" to="/owner">Admin</Link>
-            <Link className="bg-blue-600 px-2 rounded-xl text-white hover:opacity-85" to={`/profile/${userName}`}>Profile</Link>
-            <Link className="bg-blue-600 px-2 rounded-xl text-white hover:opacity-85" to="/cart">Cart</Link>
+            <Link
+              to="/login"
+              className="bg-blue-600 px-2 rounded-xl text-white hover:opacity-85"
+              
+            >
+              Login
+            </Link>
+
+            <button
+              className="bg-blue-600 px-2 rounded-xl text-white hover:opacity-85"
+              onClick={logout}
+            >
+              Logout
+            </button>
+
+            {isSeller ? (
+              <Link
+                className="bg-blue-600 px-2 rounded-xl text-white hover:opacity-85"
+                to="/owner"
+              >
+                Seller
+              </Link>
+            ) : null}
+
+            <Link
+              className="bg-blue-600 px-2 rounded-xl text-white hover:opacity-85"
+              to={`/profile/${userName}`}
+            >
+              Profile
+            </Link>
+
+            <Link
+              className="bg-blue-600 px-2 rounded-xl text-white hover:opacity-85"
+              to="/cart"
+            >
+              Cart
+            </Link>
           </>
         ) : (
-          <Link className="bg-blue-600 px-2 rounded-xl text-white hover:opacity-85" to="/login">Login</Link>
+          <Link
+            className="bg-blue-600 px-2 rounded-xl text-white hover:opacity-85"
+            to="/login"
+          >
+            Login
+          </Link>
         )}
       </div>
     </div>
@@ -55,5 +97,3 @@ const navbar = ({
 };
 
 export default navbar;
-
-

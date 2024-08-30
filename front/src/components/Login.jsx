@@ -1,12 +1,13 @@
 import React, { useState } from "react";
 import axios from "axios";
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 import {  toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import {backend_URL} from "./config"
 axios.defaults.withCredentials = true;
 
-const Login = ({ setIsAuthenticated, setUserName }) => {
+const Login = ({ setIsAuthenticated, setUserName, setIsSeller }) => {
+
   const [email, setEmail] = useState();
   const [password, setPassword] = useState();
 
@@ -29,20 +30,22 @@ const Login = ({ setIsAuthenticated, setUserName }) => {
 
 
 
-      if (response.data[0] === "Logedin") {
+      if (response.data.msg === "Logedin") {
         // setIsAuthenticated(true);
-        setUserName(response.data[1]);
-        toast.success(response.data[0]);
-        localStorage.setItem("token",response.data[2]);
+        setUserName(response.data.username);
+        toast.success(response.data.msg);
+        setIsSeller(response.data.isSeller);
+        localStorage.setItem("token",response.data.token);
       }
       else{
         toast.error(response.data);
       }
     } catch (err) {
-      toast.error(err.message);
+      // toast.error(err.message);
+      console.log(err.message);
     }
   };
-
+ 
   return (
     <div className="flex items-center justify-center  flex-col gap-2 h-screen bg-[#E0E6EC]">
       <span className="text-3xl tracking-tighter">
@@ -79,7 +82,7 @@ const Login = ({ setIsAuthenticated, setUserName }) => {
       </form>
       <div className="mb-48">
         Don't have account?{" "}
-        <Link className="text-blue-600" to="/signup">
+        <Link className="text-blue-600" to="/signup" state={{setIsSeller}}>
           SignUp
         </Link>
       </div>

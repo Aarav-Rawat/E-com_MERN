@@ -24,7 +24,12 @@ export const createUser = async (req, res) => {
 
     let token = genToken(user);
     res.cookie("token", token);
-    res.status(200).send(["Created",fullname,token]);
+    res.status(200).json({
+      msg: "Created",
+      username: user.fullname,
+      token: token,
+      isSeller: user.isSeller
+   });
   } catch (err) {
     res.status(200).send(err.message);
   }
@@ -45,8 +50,13 @@ export const loginUser = async (req, res) => {
       if (result) {
         const token = genToken(user);
         res.cookie("token", token);
-        return res.status(200).send(["Logedin",user.fullname,token]);
-      }
+        return res.status(200).json({
+           msg: "Logedin",
+           username: user.fullname,
+           token: token,
+           isSeller: user.isSeller
+        });
+      }                
       res.status(200).send("user not found");
     });
   } catch (err) {

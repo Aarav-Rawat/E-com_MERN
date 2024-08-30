@@ -1,11 +1,12 @@
 import React, { useState } from "react";
 import axios from "axios";
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { backend_URL } from "./config";
 
-const Signup = ({ setIsAuthenticated, setUserName }) => {
+const Signup = ({ setIsAuthenticated, setUserName, setIsSeller }) => {
+
 
   const [signupInfo, setSignupInfo] = useState({
     name: "",
@@ -41,11 +42,12 @@ const Signup = ({ setIsAuthenticated, setUserName }) => {
         }
       );
 
-      if (response.data[0] === "Created") {
+      if (response.data.msg === "Created") {
         // setIsAuthenticated(true);
-        setUserName(response.data[1]);
-        toast.success(response.data[0]);
-        localStorage.setItem("token",response.data[2]);
+        setUserName(response.data.username);
+        toast.success(response.data.msg);
+        setIsSeller(response.data.isSeller);
+        localStorage.setItem("token",response.data.token);
       }
       toast.error(response.data);
     } catch (err) {
