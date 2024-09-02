@@ -18,7 +18,7 @@ app.use(express.static('public'));
 app.use(express.urlencoded({ extended: true }));
 app.use(cookieParser());
 app.use(cors({
-  origin: process.env.FrontEnd_URL,
+  origin: "https://verzatile.onrender.com",
   credentials: true,
 }));
 
