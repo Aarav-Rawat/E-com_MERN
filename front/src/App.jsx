@@ -13,7 +13,7 @@ axios.defaults.withCredentials = true;
 
 const App = () => {
   const [updateProductData, setUpdateProductData] = useState(0);
-  const [isAuthenticated, setIsAuthenticated] = useState(true);
+  const [isAuthenticated, setIsAuthenticated] = useState(false);
   const [userName, setUserName] = useState(null);
   const [isSeller, setIsSeller] = useState(false);
 

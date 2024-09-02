@@ -31,7 +31,7 @@ const Login = ({ setIsAuthenticated, setUserName, setIsSeller }) => {
 
 
       if (response.data.msg === "Logedin") {
-        // setIsAuthenticated(true);
+        setIsAuthenticated(true);
         setUserName(response.data.username);
         toast.success(response.data.msg);
         setIsSeller(response.data.isSeller);
@@ -41,8 +41,8 @@ const Login = ({ setIsAuthenticated, setUserName, setIsSeller }) => {
         toast.error(response.data);
       }
     } catch (err) {
-      // toast.error(err.message);
-      console.log(err.message);
+      toast.error(err.message);
+    
     }
   };
  
@@ -82,7 +82,7 @@ const Login = ({ setIsAuthenticated, setUserName, setIsSeller }) => {
       </form>
       <div className="mb-48">
         Don't have account?{" "}
-        <Link className="text-blue-600" to="/signup" state={{setIsSeller}}>
+        <Link className="text-blue-600" to="/signup">
           SignUp
         </Link>
       </div>

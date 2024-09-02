@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import axios from "axios";
-import { Link, useLocation } from "react-router-dom";
+import { Link } from "react-router-dom";
 import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { backend_URL } from "./config";
@@ -43,7 +43,7 @@ const Signup = ({ setIsAuthenticated, setUserName, setIsSeller }) => {
       );
 
       if (response.data.msg === "Created") {
-        // setIsAuthenticated(true);
+        setIsAuthenticated(true);
         setUserName(response.data.username);
         toast.success(response.data.msg);
         setIsSeller(response.data.isSeller);
