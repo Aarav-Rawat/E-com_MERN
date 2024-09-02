@@ -1,1 +1,1 @@
-export const backend_URL = "http://localhost:3000"
+export const backend_URL = "https://verzatile-backend.onrender.com/"
