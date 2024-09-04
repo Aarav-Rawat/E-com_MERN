@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
 import { Link } from "react-router-dom";
-import Product from "./Product"
-import { backend_URL } from "./config";
+import {backend_URL} from "../components/config"
+import Product from "../components/Product";
 axios.defaults.withCredentials = true;
 
 const Profile = () => {
@@ -13,6 +13,7 @@ const Profile = () => {
         const response = await axios.get( backend_URL + "/user/profile");
 
         setUserData(response.data);
+        
       } catch (err) {
         console.log(err.message);
       }
@@ -41,7 +42,7 @@ const Profile = () => {
               <Product
                 key={index}
                 btn={false}
-                imgUrl={backend_URL + "/images/${data.image}"}
+                imgUrl={`${backend_URL}/images/${data.image}`}
                 price={data.price}
                 model={data.model}
               />
@@ -53,7 +54,7 @@ const Profile = () => {
           
         </div>
         <div className="ml-[45%] mt-[10%]">
-        <Link to="/edit" state={{userData}} className="bg-blue-600 px-2 py-[1px] text-white rounded-md ">Edit</Link>
+        <Link to="/edit" state={{userData}} className="bg-blue-600 px-4 py-[1px] text-white rounded-md tracking-normal" >Edit</Link>
         </div>
       </div>
     </div>

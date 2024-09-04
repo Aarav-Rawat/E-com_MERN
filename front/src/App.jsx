@@ -1,14 +1,14 @@
 import React, { useEffect, useState } from "react";
-import Signup from "./components/Signup";
-import Login from "./components/Login";
-import Home from "./components/Home";
 import { Routes, Route } from "react-router-dom";
-import Navbar from "./components/Navbar";
-import Profile from "./components/Profile";
-import Owner from "./components/Owner";
-import Cart from "./components/Cart";
-import Edit from "./components/Edit";
 import axios from "axios";
+import Signup from "./pages/Signup";
+import Login from "./pages/Login";
+import Owner from "./pages/Owner";
+import Profile from "./pages/Profile";
+import Cart from "./pages/Cart";
+import Edit from "./pages/Edit";
+import Home from "./pages/Home";
+import Navbar from "./components/Navbar"
 axios.defaults.withCredentials = true;
 
 const App = () => {
@@ -18,7 +18,7 @@ const App = () => {
   const [isSeller, setIsSeller] = useState(false);
 
   return (
-    <div className="tracking-tighter bg-[#E0E6EC] ">
+    <div className="tracking-tighter">
       <Navbar
         isAuthenticated={isAuthenticated}
         setIsAuthenticated={setIsAuthenticated}
@@ -58,10 +58,10 @@ const App = () => {
         ></Route>
         <Route
           path="/profile/:username"
-          element={<Profile setUserName={setUserName} />}
+          element={<Profile />}
         ></Route>
         <Route path="/cart" element={<Cart />}></Route>
-        <Route path="/edit" element={<Edit />}></Route>
+        <Route path="/edit" element={<Edit setUserName={setUserName} />}></Route>
       </Routes>
     </div>
   );

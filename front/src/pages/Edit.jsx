@@ -4,9 +4,9 @@ import { useLocation } from "react-router-dom";
 import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 axios.defaults.withCredentials = true;
-import {backend_URL} from "./config"
+import {backend_URL} from "../components/config"
 
-const Edit = () => {
+const Edit = ({setUserName}) => {
   const location = useLocation();
   const { userData } = location.state || {};
  const [newUserData, setNewUserData] = useState({
@@ -40,8 +40,10 @@ const Edit = () => {
           },
         }
       );
-      if(response.data==="User Updated")
+      if(response.data==="User Updated"){
         toast.success(response.data);
+        setUserName(newUserData.name)
+      }
       else
       toast.error(response.data);
 
@@ -51,14 +53,14 @@ const Edit = () => {
   };
 
   return (
-    <div className="p-2 min-h-screen text-xl bg-[#E0E6EC] ">
+    <div className="p-2 min-h-screen text-xl ">
       <div className="mt-10 ml-10 flex gap-10">
         <div className="flex gap-3">
           Name:
           <input
             type="text"
             placeholder={userData.name}
-            className="outline-none border-none rounded-md px-2  text-lg"
+            className="outline-none border-none rounded-md px-2 text-black  text-lg"
             onChange={handleChange}
             name="name"
           />
@@ -68,7 +70,7 @@ const Edit = () => {
           <input
             type="email"
             placeholder={userData.email}
-            className="outline-none border-none rounded-md px-2  text-lg"
+            className="outline-none border-none rounded-md px-2 text-black  text-lg"
             onChange={handleChange}
             name="email"
           />

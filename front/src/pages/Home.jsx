@@ -1,8 +1,9 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
-import Product from "./Product";
 axios.defaults.withCredentials = true;
-import {backend_URL} from "./config"
+import {backend_URL} from "../components/config"
+import Product from "../components/Product";
+
 const Home = ({ updateProductData }) => {
   const [productData, setProductData] = useState([]);
  

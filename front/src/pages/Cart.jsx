@@ -3,8 +3,8 @@ import axios from "axios";
 axios.defaults.withCredentials = true;
 import {  toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
-import Product from "./Product";
-import {backend_URL} from "./config"
+import {backend_URL} from "../components/config"
+import Product from "../components/Product";
 
 const Cart = () => {
   const [cart, setCart] = useState([]);
@@ -60,7 +60,7 @@ const Cart = () => {
       </div>
       {Array.isArray(cart) && cart.length > 0 ? (
         <button
-          className="bg-zinc-800 px-2 py-[1px] text-white rounded-md"
+          className="bg-[#3576DF] px-2 py-[1px] text-white rounded-md"
           onClick={handleOrder}
         >
           Place Order

@@ -10,7 +10,7 @@ import connectDb from "./config/mongoDB.js"
 
 const app = express();
 dotenv.config();
-const port = process.env.PORT || 3000;
+const port = process.env.PORT || 4000;
 connectDb();
 
 app.use(express.json());
@@ -18,7 +18,7 @@ app.use(express.static('public'));
 app.use(express.urlencoded({ extended: true }));
 app.use(cookieParser());
 app.use(cors({
-  origin: "https://verzatile.onrender.com",
+  origin: process.env.FrontEnd_URL,
   credentials: true,
 }));
 

@@ -3,7 +3,7 @@ import axios from "axios";
 axios.defaults.withCredentials = true;
 import {  toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
-import { backend_URL } from "./config";
+import {backend_URL} from "../components/config"
 
 const Owner = ({ setUpdateProductData }) => {
   const [image, setImage] = useState("");
@@ -36,8 +36,8 @@ const Owner = ({ setUpdateProductData }) => {
   };
 
   return (
-    <div className="bg-[#E0E6EC] h-screen flex items-center justify-center flex-col">
-      <span className="text-3xl tracking-tighter mb-10">create new <span className="text-blue-600 font-semibold text-[35px]">Product</span></span>
+    <div className=" h-screen flex items-center justify-center flex-col text-black">
+      <span className="text-3xl tracking-tighter mb-10 text-white">create new <span className="text-[#3576DF] font-semibold text-[35px]">Product</span></span>
       <div className="productDetails">
         <form
           onSubmit={handleSubmit}
@@ -49,7 +49,7 @@ const Owner = ({ setUpdateProductData }) => {
             onChange={(e) => {
               setImage(e.target.files[0]);
             }}
-            className="w-[300px] px-2 py-1 rounded-md"
+            className="w-[300px] px-2 py-1 rounded-md text-white"
           />
 
           <input
@@ -59,7 +59,7 @@ const Owner = ({ setUpdateProductData }) => {
             onChange={(e) => {
               setModel(e.target.value);
             }}
-            className="w-[300px] px-2 py-1 rounded-md"
+            className="w-[300px] px-2 py-1 rounded-md outline-none"
           />
 
           <input
@@ -69,10 +69,10 @@ const Owner = ({ setUpdateProductData }) => {
             onChange={(e) => {
               setPrice(e.target.value);
             }}
-            className="w-[300px] px-2 py-1 rounded-md"
+            className="w-[300px] px-2 py-1 rounded-md outline-none"
           />
 
-          <input type="submit" value="Create" className="bg-blue-500 px-2 py-1 rounded-xl" />
+          <input type="submit" value="Create" className="bg-blue-500 px-2 py-1 rounded-xl " />
         </form>
       </div>
     </div>
