@@ -3,7 +3,7 @@ import axios from "axios";
 import { Link } from "react-router-dom";
 import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-import {backend_URL} from "../components/config"
+import {backend_URL, token} from "../components/config"
 
 
 const Signup = ({ setIsAuthenticated, setUserName, setIsSeller }) => {
@@ -46,7 +46,8 @@ const Signup = ({ setIsAuthenticated, setUserName, setIsSeller }) => {
         setUserName(response.data.username);
         toast.success(response.data.msg);
         setIsSeller(response.data.isSeller);
-        localStorage.setItem("token", response.data.token);
+        token = 
+        sessionStorage.setItem('token',JSON.stringify(response.data.token));
       }
       toast.error(response.data);
     } catch (err) {

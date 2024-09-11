@@ -29,9 +29,9 @@ const Login = ({ setIsAuthenticated, setUserName, setIsSeller }) => {
       if (response.data.msg === "Logedin") {
         setIsAuthenticated(true);
         setUserName(response.data.username);
-        toast.success(response.data.msg);
         setIsSeller(response.data.isSeller);
-        localStorage.setItem("token", response.data.token);
+        toast.success(response.data.msg);
+        sessionStorage.setItem('token',JSON.stringify(response.data.token));
       } else {
         toast.error(response.data);
       }

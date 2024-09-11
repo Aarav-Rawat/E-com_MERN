@@ -23,15 +23,16 @@ export const createUser = async (req, res) => {
     });
 
     let token = genToken(user);
-    res.cookie("token", token,{
-      httpOnly: true,
-      secure: true
-    });
+    // res.cookie("token", token,{
+    //   httpOnly: true,
+    //   secure: true
+    // });
     res.status(200).json({
       msg: "Created",
       username: user.fullname,
       token: token,
-      isSeller: user.isSeller
+      isSeller: user.isSeller,
+      token: token
    });
   } catch (err) {
     res.status(200).send(err.message);
@@ -52,15 +53,16 @@ export const loginUser = async (req, res) => {
 
       if (result) {
         const token = genToken(user);
-        res.cookie("token", token,{
-          httpOnly: true,
-          secure: true
-        });
+        // res.cookie("token", token,{
+        //   httpOnly: true,
+        //   secure: true
+        // });
         return res.status(200).json({
            msg: "Logedin",
            username: user.fullname,
            token: token,
-           isSeller: user.isSeller
+           isSeller: user.isSeller,
+           token: token
         });
       }                
       res.status(200).send("user not found");
