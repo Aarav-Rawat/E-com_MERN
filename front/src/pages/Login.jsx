@@ -43,7 +43,7 @@ const Login = ({ setIsAuthenticated, setUserName, setIsSeller }) => {
   return (
     <div className="flex items-center justify-center  flex-col gap-2 h-screen ">
       <span className="text-3xl tracking-tighter">
-        welcome to <span className="text-[#3576DF] font-bold tracking-normal">Verzatile</span>
+        welcome to <span className="text-blue-500 font-bold tracking-normal">Verzatile</span>
       </span>
       <span className="text-xl tracking-tighter">Enter Account Details</span>
       <form
@@ -72,13 +72,13 @@ const Login = ({ setIsAuthenticated, setUserName, setIsSeller }) => {
           <input
             type="submit"
             value="Login"
-            className="bg-[#3576DF] px-2 py-1 rounded-xl outline-none"
+            className="bg-blue-500 px-2 py-1 rounded-xl outline-none"
           />
       
       </form>
       <div className="mb-48">
         Don't have account?{" "}
-        <Link className="text-[#3576DF]" to="/signup">
+        <Link className="text-blue-500" to="/signup">
           SignUp
         </Link>
       </div>

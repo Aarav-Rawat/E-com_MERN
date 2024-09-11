@@ -27,6 +27,7 @@ const App = () => {
         isSeller={isSeller}
         setIsSeller={setIsSeller}
       />
+
       <Routes>
         <Route
           path="/"

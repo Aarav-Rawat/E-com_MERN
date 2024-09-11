@@ -15,6 +15,7 @@ const Home = ({ updateProductData }) => {
         const response = await axios.get(backend_URL + "/product");
       
         setProductData(response.data);
+       
       } catch (err) {
         console.log(err.message);
       }

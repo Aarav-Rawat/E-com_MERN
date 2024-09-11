@@ -60,7 +60,7 @@ const Signup = ({ setIsAuthenticated, setUserName, setIsSeller }) => {
         <div className="log-in flex items-center justify-between flex-col gap-2">
           <span className="text-3xl tracking-tighter">
             welcome to{" "}
-            <span className="text-blue-600 font-bold">Verzatile</span>
+            <span className="text-blue-500 font-bold">Verzatile</span>
           </span>
           <span className="text-xl tracking-tighter">Create your Account</span>
           <form
@@ -93,7 +93,7 @@ const Signup = ({ setIsAuthenticated, setUserName, setIsSeller }) => {
               <label htmlFor="admin">Become Seller</label>
               <select
                 name="seller"
-                className="rounded-xl border-white border-[1.5px] outline-none bg-[#020817]"
+                className="rounded-xl border-blue-500 border-[1.5px] outline-none bg-[#020817]"
                 onChange={handleChange}
               >
                 <option value="false">No</option>
@@ -111,7 +111,7 @@ const Signup = ({ setIsAuthenticated, setUserName, setIsSeller }) => {
           </form>
           <div className="mb-4">
             Already have a account?
-            <Link className="text-blue-600" to="/login">
+            <Link className="text-blue-500" to="/login">
               Login
             </Link>
           </div>
