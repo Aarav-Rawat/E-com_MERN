@@ -23,7 +23,10 @@ export const createUser = async (req, res) => {
     });
 
     let token = genToken(user);
-    res.cookie("token", token);
+    res.cookie("token", token,{
+      httpOnly: true,
+      secure: true
+    });
     res.status(200).json({
       msg: "Created",
       username: user.fullname,
@@ -49,7 +52,10 @@ export const loginUser = async (req, res) => {
 
       if (result) {
         const token = genToken(user);
-        res.cookie("token", token);
+        res.cookie("token", token,{
+          httpOnly: true,
+          secure: true
+        });
         return res.status(200).json({
            msg: "Logedin",
            username: user.fullname,
