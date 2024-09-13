@@ -1,15 +1,17 @@
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import axios from "axios";
 import { Link, useLocation } from "react-router-dom";
 import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import {backend_URL} from "../components/config"
+import { myContext } from "../context/context";
 axios.defaults.withCredentials = true;
 
 const Login = ({ setIsAuthenticated, setUserName, setIsSeller }) => {
   const [email, setEmail] = useState();
   const [password, setPassword] = useState();
-
+  const value = useContext(myContext);
+ 
   const userLoginSubmit = async (e) => {
     e.preventDefault();
     try {
@@ -31,7 +33,8 @@ const Login = ({ setIsAuthenticated, setUserName, setIsSeller }) => {
         setUserName(response.data.username);
         setIsSeller(response.data.isSeller);
         toast.success(response.data.msg);
-        sessionStorage.setItem('token',JSON.stringify(response.data.token));
+        sessionStorage.setItem('token',JSON.stringify(response.data.token))
+        value.setToken(JSON.stringify(response.data.token));
       } else {
         toast.error(response.data);
       }
@@ -39,7 +42,7 @@ const Login = ({ setIsAuthenticated, setUserName, setIsSeller }) => {
       toast.error(err.message);
     }
   };
-
+  
   return (
     <div className="flex items-center justify-center  flex-col gap-2 h-screen ">
       <span className="text-3xl tracking-tighter">

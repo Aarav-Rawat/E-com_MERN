@@ -1,14 +1,16 @@
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import axios from "axios";
 axios.defaults.withCredentials = true;
-import {  toast } from 'react-toastify';
-import 'react-toastify/dist/ReactToastify.css';
-import {backend_URL} from "../components/config"
+import { toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
+import { backend_URL } from "../components/config";
+import { myContext } from "../context/context";
 
 const Owner = ({ setUpdateProductData }) => {
   const [image, setImage] = useState("");
   const [model, setModel] = useState("");
   const [price, setPrice] = useState("");
+  const value = useContext(myContext);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -18,16 +20,19 @@ const Owner = ({ setUpdateProductData }) => {
     formData.append("price", price);
     try {
       const response = await axios.post(
-      backend_URL + "/product/create",
+        backend_URL + "/product/create",
         formData,
+        {
+          headers: {
+            Authorization: `Bearer ${value.token}`,
+          },
+        }
       );
 
       setUpdateProductData((prev) => !prev);
-      if(response.data === "login first"){
+      if (response.data === "login first") {
         toast.error(response.data);
-      }
-      else{
-
+      } else {
         toast.success(response.data);
       }
     } catch (err) {
@@ -37,7 +42,12 @@ const Owner = ({ setUpdateProductData }) => {
 
   return (
     <div className=" h-screen flex items-center justify-center flex-col text-black">
-      <span className="text-3xl tracking-tighter mb-10 text-white">create new <span className="text-[#3576DF] font-semibold text-[35px]">Product</span></span>
+      <span className="text-3xl tracking-tighter mb-10 text-white">
+        create new{" "}
+        <span className="text-[#3576DF] font-semibold text-[35px]">
+          Product
+        </span>
+      </span>
       <div className="productDetails">
         <form
           onSubmit={handleSubmit}
@@ -72,7 +82,11 @@ const Owner = ({ setUpdateProductData }) => {
             className="w-[300px] px-2 py-1 rounded-md outline-none"
           />
 
-          <input type="submit" value="Create" className="bg-blue-500 px-2 py-1 rounded-xl " />
+          <input
+            type="submit"
+            value="Create"
+            className="bg-blue-500 px-2 py-1 rounded-xl "
+          />
         </form>
       </div>
     </div>

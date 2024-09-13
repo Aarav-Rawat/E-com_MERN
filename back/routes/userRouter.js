@@ -12,4 +12,4 @@ router.get('/profile',isLoggedIn,userProfile);
 router.post('/order',isLoggedIn,userOrder);
 router.post('/edit',isLoggedIn,updateUser);
 
-export default router;
+export default router; 

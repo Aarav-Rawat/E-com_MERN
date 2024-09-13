@@ -6,8 +6,6 @@ import Product from "../components/Product";
 
 const Home = ({ updateProductData }) => {
   const [productData, setProductData] = useState([]);
- 
-  
 
   useEffect(() => {
     const fetchData = async () => {
@@ -20,7 +18,7 @@ const Home = ({ updateProductData }) => {
         console.log(err.message);
       }
     };
-
+ 
     fetchData();
   }, [updateProductData]);
 

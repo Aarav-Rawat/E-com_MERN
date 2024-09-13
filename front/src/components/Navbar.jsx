@@ -1,9 +1,10 @@
 import axios from "axios";
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import { Link } from "react-router-dom";
 import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { backend_URL } from "./config";
+import { myContext } from "../context/context";
 
 axios.defaults.withCredentials = true;
 
@@ -14,16 +15,16 @@ const navbar = ({
   userName,
   isSeller,
 }) => {
+
+  const value = useContext(myContext);
   const logout = async () => {
     try {
-      const response = await axios.get(backend_URL + "/logout", {
-        headers: {
-          "Content-Type": "application/json",
-        },
-      });
+      
       setIsAuthenticated(false);
       setUserName(null);
-      toast.success(response.data);
+      toast.success('Logout Sucessfully');
+      value.setToken(null);
+      sessionStorage.clear();
     } catch (error) {
       console.log(error.message);
     }

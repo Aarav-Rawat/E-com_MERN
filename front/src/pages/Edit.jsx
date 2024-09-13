@@ -1,14 +1,16 @@
 import axios from "axios";
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import { useLocation } from "react-router-dom";
 import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 axios.defaults.withCredentials = true;
 import {backend_URL} from "../components/config"
+import { myContext } from "../context/context";
 
 const Edit = ({setUserName}) => {
   const location = useLocation();
   const { userData } = location.state || {};
+  const value = useContext(myContext);
  const [newUserData, setNewUserData] = useState({
    name: userData.name,
    email: userData.email
@@ -37,6 +39,7 @@ const Edit = ({setUserName}) => {
         {
           headers: {
             "Content-Type": "application/json",
+            Authorization: `Bearer ${value.token}`,
           },
         }
       );

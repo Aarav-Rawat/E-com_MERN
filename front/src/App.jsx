@@ -9,6 +9,7 @@ import Cart from "./pages/Cart";
 import Edit from "./pages/Edit";
 import Home from "./pages/Home";
 import Navbar from "./components/Navbar"
+import { myContext } from "./context/context";
 axios.defaults.withCredentials = true;
 
 const App = () => {
@@ -16,8 +17,10 @@ const App = () => {
   const [isAuthenticated, setIsAuthenticated] = useState(false);
   const [userName, setUserName] = useState(null);
   const [isSeller, setIsSeller] = useState(false);
+  const [token, setToken] = useState(null)
 
   return (
+    <myContext.Provider value={{token,setToken}}>
     <div className="tracking-tighter">
       <Navbar
         isAuthenticated={isAuthenticated}
@@ -65,6 +68,7 @@ const App = () => {
         <Route path="/edit" element={<Edit setUserName={setUserName} />}></Route>
       </Routes>
     </div>
+    </myContext.Provider>
   );
 };
 

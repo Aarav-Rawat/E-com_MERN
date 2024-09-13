@@ -1,18 +1,24 @@
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import axios from "axios";
 axios.defaults.withCredentials = true;
 import {  toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import {backend_URL} from "../components/config"
 import Product from "../components/Product";
+import { myContext } from "../context/context";
 
 const Cart = () => {
   const [cart, setCart] = useState([]);
+  const value = useContext(myContext);
   
   useEffect(() => {
     const fetchUserCart = async () => {
       try {
-        const response = await axios.get(backend_URL + "/user/cart");
+        const response = await axios.get(backend_URL + "/user/cart",{
+          headers: {
+            Authorization: `Bearer ${value.token}`,
+          },
+        });
        
           setCart(response.data);
        
@@ -30,6 +36,7 @@ const Cart = () => {
       const response = await axios.post(backend_URL + "/user/order",{
         headers: {
           "Content-Type": "application/json",
+          Authorization: `Bearer ${value.token}`,
         },
       });
       toast.success(response.data);

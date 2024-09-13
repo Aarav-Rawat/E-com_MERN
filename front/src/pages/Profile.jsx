@@ -1,16 +1,24 @@
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import axios from "axios";
 import { Link } from "react-router-dom";
 import {backend_URL} from "../components/config"
 import Product from "../components/Product";
+import { myContext } from "../context/context";
 axios.defaults.withCredentials = true;
 
+
 const Profile = () => {
+  const value = useContext(myContext);
+  
   const [userData, setUserData] = useState([]);
   useEffect(() => {
     const fetchUserData = async () => {
       try {
-        const response = await axios.get( backend_URL + "/user/profile");
+        const response = await axios.get( backend_URL + "/user/profile",{
+          headers: {
+                Authorization: `Bearer ${value.token}`
+          }
+        });
 
         setUserData(response.data);
         

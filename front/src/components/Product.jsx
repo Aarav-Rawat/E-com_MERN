@@ -1,11 +1,13 @@
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import axios from "axios";
 axios.defaults.withCredentials = true;
 import {  toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { backend_URL } from "./config";
+import { myContext } from "../context/context";
 
 const Product = ({imgUrl,price,model, id, btn }) => {
+  const value = useContext(myContext);
 
   const addToCart = async (id) => {
     try{
@@ -18,6 +20,7 @@ const Product = ({imgUrl,price,model, id, btn }) => {
         {
           headers: {
             "Content-Type": "application/json",
+            Authorization: `Bearer ${value.token}`,
           },
         }
       );
