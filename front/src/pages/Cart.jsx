@@ -35,7 +35,7 @@ const Cart = () => {
       const response = await axios.post(backend_URL + "/user/order",{
         headers: {
           "Content-Type": "application/json",
-          Authorization: `Bearer ${value.token}`,
+          Authorization: `Bearer ${JSON.parse(sessionStorage.getItem('token'))}`,
         },
       });
       toast.success(response.data);
