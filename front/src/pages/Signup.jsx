@@ -49,7 +49,7 @@ const Signup = ({ setIsAuthenticated, setUserName, setIsSeller }) => {
         toast.success(response.data.msg);
         setIsSeller(response.data.isSeller);
         sessionStorage.setItem('token',JSON.stringify(response.data.token))
-        value.setToken(JSON.stringify(response.data.token));
+        
       }
       toast.error(response.data);
     } catch (err) {

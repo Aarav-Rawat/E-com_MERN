@@ -9,14 +9,13 @@ import { myContext } from "../context/context";
 
 const Cart = () => {
   const [cart, setCart] = useState([]);
-  const value = useContext(myContext);
   
   useEffect(() => {
     const fetchUserCart = async () => {
       try {
         const response = await axios.get(backend_URL + "/user/cart",{
           headers: {
-            Authorization: `Bearer ${value.token}`,
+            Authorization: `Bearer ${JSON.parse(sessionStorage.getItem('token'))}`,
           },
         });
        

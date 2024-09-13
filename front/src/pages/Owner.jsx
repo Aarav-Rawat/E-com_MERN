@@ -24,7 +24,7 @@ const Owner = ({ setUpdateProductData }) => {
         formData,
         {
           headers: {
-            Authorization: `Bearer ${value.token}`,
+          Authorization: `Bearer ${JSON.parse(sessionStorage.getItem('token'))}`,
           },
         }
       );

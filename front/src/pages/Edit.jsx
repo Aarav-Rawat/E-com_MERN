@@ -10,7 +10,7 @@ import { myContext } from "../context/context";
 const Edit = ({setUserName}) => {
   const location = useLocation();
   const { userData } = location.state || {};
-  const value = useContext(myContext);
+ 
  const [newUserData, setNewUserData] = useState({
    name: userData.name,
    email: userData.email
@@ -39,7 +39,7 @@ const Edit = ({setUserName}) => {
         {
           headers: {
             "Content-Type": "application/json",
-            Authorization: `Bearer ${value.token}`,
+            Authorization: `Bearer ${JSON.parse(sessionStorage.getItem('token'))}`,
           },
         }
       );

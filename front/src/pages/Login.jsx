@@ -34,7 +34,7 @@ const Login = ({ setIsAuthenticated, setUserName, setIsSeller }) => {
         setIsSeller(response.data.isSeller);
         toast.success(response.data.msg);
         sessionStorage.setItem('token',JSON.stringify(response.data.token))
-        value.setToken(JSON.stringify(response.data.token));
+     
       } else {
         toast.error(response.data);
       }

@@ -7,7 +7,7 @@ import { backend_URL } from "./config";
 import { myContext } from "../context/context";
 
 const Product = ({imgUrl,price,model, id, btn }) => {
-  const value = useContext(myContext);
+
 
   const addToCart = async (id) => {
     try{
@@ -20,7 +20,7 @@ const Product = ({imgUrl,price,model, id, btn }) => {
         {
           headers: {
             "Content-Type": "application/json",
-            Authorization: `Bearer ${value.token}`,
+            Authorization: `Bearer ${JSON.parse(sessionStorage.getItem('token'))}`,
           },
         }
       );
