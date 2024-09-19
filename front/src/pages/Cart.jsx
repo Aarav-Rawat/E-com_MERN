@@ -5,7 +5,6 @@ import {  toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import {backend_URL} from "../components/config"
 import Product from "../components/Product";
-import { myContext } from "../context/context";
 
 const Cart = () => {
   const [cart, setCart] = useState([]);
