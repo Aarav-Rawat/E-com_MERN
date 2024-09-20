@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import { Routes, Route } from "react-router-dom";
 import axios from "axios";
 import Signup from "./pages/Signup";
@@ -21,7 +21,7 @@ const App = () => {
 
   return (
     <myContext.Provider value={{token,setToken}}>
-    <div className="tracking-tighter">
+    <div className="tracking-tighter ">
       <Navbar
         isAuthenticated={isAuthenticated}
         setIsAuthenticated={setIsAuthenticated}
