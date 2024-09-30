@@ -65,7 +65,7 @@ const Cart = () => {
       </div>
       {Array.isArray(cart) && cart.length > 0 ? (
         <button
-          className="bg-[#3576DF] px-2 py-[1px] text-white rounded-md"
+          className="bg-[#3576DF] px-2 py-[1px] rounded-md"
           onClick={handleOrder}
         >
           Place Order

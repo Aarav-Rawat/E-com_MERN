@@ -21,7 +21,7 @@ const App = () => {
 
   return (
     <myContext.Provider value={{token,setToken}}>
-    <div className="tracking-tighter ">
+    <div className="tracking-tighter bg-[#E0E6EC]">
       <Navbar
         isAuthenticated={isAuthenticated}
         setIsAuthenticated={setIsAuthenticated}

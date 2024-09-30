@@ -32,7 +32,7 @@ const Profile = () => {
   }, []);
 
   return (
-    <div className="p-2 min-h-screen text-xl">
+    <div className="p-2 min-h-screen text-xl text-black">
       <div className=" ml-10">
         <div className="flex gap-3">
           Name:

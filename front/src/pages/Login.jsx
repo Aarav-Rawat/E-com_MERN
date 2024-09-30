@@ -8,8 +8,8 @@ import { myContext } from "../context/context";
 axios.defaults.withCredentials = true;
 
 const Login = ({ setIsAuthenticated, setUserName, setIsSeller }) => {
-  const [email, setEmail] = useState("aaravrawat@gmail.com");
-  const [password, setPassword] = useState("aarav");
+  const [email, setEmail] = useState();
+  const [password, setPassword] = useState();
   const value = useContext(myContext);
  
   const userLoginSubmit = async (e) => {
@@ -44,7 +44,7 @@ const Login = ({ setIsAuthenticated, setUserName, setIsSeller }) => {
   };
   
   return (
-    <div className="flex items-center justify-center  flex-col gap-2 h-screen ">
+    <div className="flex items-center justify-center  flex-col gap-2 h-screen text-black">
       <span className="text-3xl tracking-tighter">
         welcome to <span className="text-blue-500 font-bold tracking-normal">Verzatile</span>
       </span>
@@ -55,9 +55,8 @@ const Login = ({ setIsAuthenticated, setUserName, setIsSeller }) => {
       >
         <input
           type="email"
-          placeholder="E-mail"
+          placeholder="aaravrawat00000@gmail.com"
           name="email"
-          value="aaravrawat00000@gmail.com"
           onChange={(e) => {
             setEmail(e.target.value);
           }}
@@ -65,9 +64,8 @@ const Login = ({ setIsAuthenticated, setUserName, setIsSeller }) => {
         />
         <input
           type="password"
-          placeholder="Password"
+          placeholder="aarav"
           name="password"
-          value="aarav"
           onChange={(e) => {
             setPassword(e.target.value);
           }}

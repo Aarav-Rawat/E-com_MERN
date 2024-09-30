@@ -56,7 +56,7 @@ const Edit = ({setUserName}) => {
   };
 
   return (
-    <div className="p-2 min-h-screen text-xl ">
+    <div className="p-2 min-h-screen text-xl text-black ">
       <div className="mt-10 ml-10 flex gap-10">
         <div className="flex gap-3">
           Name:

@@ -58,7 +58,7 @@ const Signup = ({ setIsAuthenticated, setUserName, setIsSeller }) => {
   };
 
   return (
-    <div className="p-2 h-screen ">
+    <div className="p-2 h-screen text-black">
       <div className="container flex items-center justify-around mt-16">
         <div className="log-in flex items-center justify-between flex-col gap-2">
           <span className="text-3xl tracking-tighter">
@@ -96,7 +96,7 @@ const Signup = ({ setIsAuthenticated, setUserName, setIsSeller }) => {
               <label htmlFor="admin">Become Seller</label>
               <select
                 name="seller"
-                className="rounded-xl border-blue-500 border-[1.5px] outline-none bg-[#020817]"
+                className="rounded-xl border-blue-500 border-[1.5px] outline-none "
                 onChange={handleChange}
               >
                 <option value="false">No</option>
@@ -109,7 +109,7 @@ const Signup = ({ setIsAuthenticated, setUserName, setIsSeller }) => {
             <input
               type="submit"
               value="Signup"
-              className="bg-blue-500 px-2 py-1 rounded-xl outline-none"
+              className="bg-blue-500 px-2 py-1 rounded-xl outline-none text-white"
             />
           </form>
           <div className="mb-4">

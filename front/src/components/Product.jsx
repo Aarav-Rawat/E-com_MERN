@@ -31,7 +31,7 @@ const Product = ({imgUrl,price,model, id, btn }) => {
   };
 
   return (
-    <div className="coverDetails flex flex-col items-start p-2 gap-2 w-[15vw] h-fit">
+    <div className="coverDetails flex flex-col items-start p-2 gap-2 w-[15vw] h-fit text-black">
       <img src={imgUrl} alt="loading..." />
 
       <p className="tracking-tighter text-base">{model}</p>
@@ -44,7 +44,7 @@ const Product = ({imgUrl,price,model, id, btn }) => {
         ) : (
           <button
           onClick={() => addToCart(id)}
-          className="bg-blue-600 px-2 py-[1px] text-white rounded-md"
+          className="bg-blue-600 px-2 py-[1px] rounded-md text-white"
         >
           Add to Cart
         </button>

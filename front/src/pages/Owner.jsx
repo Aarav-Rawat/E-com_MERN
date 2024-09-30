@@ -42,7 +42,7 @@ const Owner = ({ setUpdateProductData }) => {
 
   return (
     <div className=" h-screen flex items-center justify-center flex-col text-black">
-      <span className="text-3xl tracking-tighter mb-10 text-white">
+      <span className="text-3xl tracking-tighter mb-10 ">
         create new{" "}
         <span className="text-[#3576DF] font-semibold text-[35px]">
           Product
@@ -59,7 +59,7 @@ const Owner = ({ setUpdateProductData }) => {
             onChange={(e) => {
               setImage(e.target.files[0]);
             }}
-            className="w-[300px] px-2 py-1 rounded-md text-white"
+            className="w-[300px] px-2 py-1 rounded-md"
           />
 
           <input
@@ -85,7 +85,7 @@ const Owner = ({ setUpdateProductData }) => {
           <input
             type="submit"
             value="Create"
-            className="bg-blue-500 px-2 py-1 rounded-xl "
+            className="bg-blue-500 px-2 py-1 rounded-xl text-white"
           />
         </form>
       </div>
