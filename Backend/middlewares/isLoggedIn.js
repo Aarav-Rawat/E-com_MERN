@@ -2,7 +2,7 @@ import jwt from "jsonwebtoken"
 
 export const isLoggedIn = (req,res,next)=>{
     try{
-        const authHeader = req.headers['authorization'];
+        const authHeader = req.body.headers['Authorization'];
         const token = authHeader && authHeader.split(" ")[1];
         if(!token){
             return res.status(200).send("login first");

@@ -28,10 +28,11 @@ export const getCart = async (req, res) => {
 export const userProfile = async (req, res) => {
   
   try {
+  
     const user = await userModel
       .findOne({ email: req.user.email })
       .populate("orders");
-
+      console.log(user)
     res.status(200).json({
       name: user.fullname,
       email: user.email,
@@ -45,6 +46,7 @@ export const userProfile = async (req, res) => {
 export const userOrder = async (req, res) => {
   try {
     const user = await userModel.findOne({ email: req.user.email });
+    console.log(user);
     const cart = user.cart;
     await userModel.updateOne(
       { email: req.user.email },

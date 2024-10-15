@@ -55,7 +55,7 @@ const Login = ({ setIsAuthenticated, setUserName, setIsSeller }) => {
       >
         <input
           type="email"
-          placeholder="aaravrawat00000@gmail.com"
+          placeholder="aaravrawat@gmail.com"
           name="email"
           onChange={(e) => {
             setEmail(e.target.value);

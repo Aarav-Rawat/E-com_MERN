@@ -27,7 +27,7 @@ const Home = ({ updateProductData }) => {
       <div className=" flex flex-wrap gap-5 items-start">
         {
         !productData.length ? (
-          <p className="text-3xl tracking-tighter ml-[500px] mt-[200px]">Product Unavailable</p>
+          <p className="text-3xl tracking-tighter ml-[500px] mt-[200px] text-black">Product Unavailable</p>
         ) : (
           productData.map((data, index) =>  (
               <Product

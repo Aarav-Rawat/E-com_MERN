@@ -1,16 +1,13 @@
-import React, { useContext, useEffect, useState } from "react";
+import React, {useEffect, useState } from "react";
 import axios from "axios";
 import { Link } from "react-router-dom";
 import { backend_URL } from "../components/config";
 import Product from "../components/Product";
-import { myContext } from "../context/context";
+
 axios.defaults.withCredentials = true;
 
 const Profile = () => {
  
-  const token = JSON.parse(sessionStorage.getItem('token'));
-
-
   const [userData, setUserData] = useState([]);
   useEffect(() => {
     const fetchUserData = async () => {
@@ -18,10 +15,9 @@ const Profile = () => {
         const response = await axios.get(backend_URL + "/user/profile", {
           headers: {
             Authorization: `Bearer ${JSON.parse(sessionStorage.getItem('token'))}`,
-            
           },
         });
-
+        console.log(response)
         setUserData(response.data);
       } catch (err) {
         console.log(err.message);

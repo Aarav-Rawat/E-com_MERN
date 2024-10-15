@@ -19,7 +19,7 @@ const Cart = () => {
         });
        
           setCart(response.data);
-       
+          
       } catch (err) {
         
         console.log(err.message);
