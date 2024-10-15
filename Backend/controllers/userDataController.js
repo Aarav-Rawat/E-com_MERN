@@ -32,7 +32,6 @@ export const userProfile = async (req, res) => {
     const user = await userModel
       .findOne({ email: req.user.email })
       .populate("orders");
-      console.log(user)
     res.status(200).json({
       name: user.fullname,
       email: user.email,
