@@ -31,16 +31,16 @@ const navbar = ({
   };
 
   return (
-    <div className=" flex justify-between items-center px-5 h-[8vh] text-xl tracking-tighter">
+    <div className=" flex justify-between items-center px-1 sm:px-5  h-[8vh] sm:text-xl text-base tracking-tighter ">
       <div>
         <img src="" alt="" />
-        <Link to="/" className="text-3xl font-bold text-[#3576DF] tracking-normal">
+        <Link to="/" className="sm:text-3xl text-xl font-bold text-[#3576DF] tracking-normal">
           Verzatile
          
         </Link>
       </div>
 
-      <div className="flex space-x-4">
+      <div className="flex sm:space-x-4 gap-1">
         {isAuthenticated ? (
           <>
             <button

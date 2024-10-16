@@ -21,7 +21,6 @@ const Cart = () => {
           setCart(response.data);
           
       } catch (err) {
-        
         console.log(err.message);
       }
     };
@@ -31,7 +30,7 @@ const Cart = () => {
 
   const handleOrder = async () => {
     try {
-      const response = await axios.post(backend_URL + "/user/order",{
+      const response = await axios.post(backend_URL + "/user/order",{},{ 
         headers: {
           "Content-Type": "application/json",
           Authorization: `Bearer ${JSON.parse(sessionStorage.getItem('token'))}`,

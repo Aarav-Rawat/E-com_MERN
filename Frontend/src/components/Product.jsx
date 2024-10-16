@@ -1,17 +1,16 @@
-import React, { useContext, useState } from "react";
+
 import axios from "axios";
 axios.defaults.withCredentials = true;
 import {  toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { backend_URL } from "./config";
-import { myContext } from "../context/context";
 
 const Product = ({imgUrl,price,model, id, btn }) => {
 
 
   const addToCart = async (id) => {
+    console.log(id)
     try{
-
       const response = await axios.post(
         backend_URL +"/user/cart",
         {
@@ -31,7 +30,7 @@ const Product = ({imgUrl,price,model, id, btn }) => {
   };
 
   return (
-    <div className="coverDetails flex flex-col items-start p-2 gap-2 w-[15vw] h-fit text-black">
+    <div className="coverDetails flex flex-col items-start p-2 gap-2 sm:w-[15vw] h-fit text-black">
       <img src={imgUrl} alt="loading..." />
 
       <p className="tracking-tighter text-base">{model}</p>

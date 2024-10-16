@@ -12,6 +12,8 @@ const Owner = ({ setUpdateProductData }) => {
   const [price, setPrice] = useState("");
   const value = useContext(myContext);
 
+ 
+
   const handleSubmit = async (e) => {
     e.preventDefault();
     const formData = new FormData();

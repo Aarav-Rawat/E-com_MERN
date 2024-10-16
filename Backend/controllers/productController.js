@@ -3,10 +3,10 @@ import userModel from "../models/userModel.js";
 
 
 export const createProduct = async (req, res) => {
+  console.log(req.body)  
   try {
     const { model, price } = req.body;
-
-    const product = await productModel.create({
+      const product = await productModel.create({
       image: req.file.filename,
       model,
       price,
