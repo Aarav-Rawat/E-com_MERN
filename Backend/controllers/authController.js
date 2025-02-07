@@ -38,30 +38,45 @@ export const createUser = async (req, res) => {
 export const loginUser = async (req, res) => {
   try {
     const { email, password } = req.body;
+    
+    if (!email || !password) {
+      return res.status(400).json({
+        success: false,
+        message: "Please provide email and password"
+      });
+    }
+
     const user = await userModel.findOne({ email });
     if (!user) {
-      return res.status(200).send("user not found");
+      return res.status(401).json({
+        success: false,
+        message: "Invalid credentials"
+      });
     }
-    bcrypt.compare(password, user.password, function (err, result) {
-      if (err) {
-        return res.status(200).send(err.message);
-      }
 
-      if (result) {
-        const token = genToken(user);
+    const isMatch = await bcrypt.compare(password, user.password);
+    if (!isMatch) {
+      return res.status(401).json({
+        success: false,
+        message: "Invalid credentials"
+      });
+    }
 
-        return res.status(200).json({
-           msg: "Logedin",
-           username: user.fullname,
-           token: token,
-           isSeller: user.isSeller,
-    
-        });
-      }                
-      res.status(200).send("user not found");
+    const token = genToken(user);
+
+    res.status(200).json({
+      success: true,
+      msg: "Logedin",
+      username: user.fullname,
+      token: token,
+      isSeller: user.isSeller
     });
   } catch (err) {
-    res.status(500).send(err.message);
+    console.error('Login error:', err);
+    res.status(500).json({
+      success: false,
+      message: "Server error during login"
+    });
   }
 };
 

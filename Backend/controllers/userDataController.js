@@ -26,19 +26,34 @@ export const getCart = async (req, res) => {
 };
 
 export const userProfile = async (req, res) => {
-  
   try {
-  
     const user = await userModel
       .findOne({ email: req.user.email })
-      .populate("orders");
+      .populate("orders")
+      .populate("cart");
+
+    if (!user) {
+      return res.status(404).json({
+        success: false,
+        message: "User not found"
+      });
+    }
+
     res.status(200).json({
-      name: user.fullname,
-      email: user.email,
-      orders: user.orders,
+      success: true,
+      data: {
+        name: user.fullname,
+        email: user.email,
+        orders: user.orders || [],
+        cart: user.cart || []
+      }
     });
   } catch (err) {
-    res.status(500).send(err.message);
+    console.error("Profile error:", err);
+    res.status(500).json({
+      success: false,
+      message: "Error fetching profile data"
+    });
   }
 };
 

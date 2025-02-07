@@ -5,15 +5,27 @@ export const isLoggedIn = (req,res,next)=>{
         const authHeader = req.headers['authorization'];
         const token = authHeader && authHeader.split(" ")[1];
         if(!token){
-            return res.status(200).send("login first");
+            return res.status(401).json({
+                success: false,
+                message: "Authentication required"
+            });
         }
-        let userData = jwt.verify(token,process.env.JWT_SECRET_KEY);
-   
-     req.user = userData;
-     next();
+        try {
+            const userData = jwt.verify(token,process.env.JWT_SECRET_KEY);
+            req.user = userData;
+            next();
+        } catch (err) {
+            return res.status(401).json({
+                success: false,
+                message: "Invalid or expired token"
+            });
+        }
     }
-
     catch(err){
-        res.status(500).send("islogged");
+        console.error("Auth middleware error:", err);
+        return res.status(500).json({
+            success: false,
+            message: "Server error during authentication"
+        });
     }
 }

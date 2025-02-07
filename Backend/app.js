@@ -17,14 +17,34 @@ app.use(express.json());
 app.use(express.static('public'));
 app.use(express.urlencoded({ extended: true }));
 app.use(cookieParser());
+// origin: process.env.FrontEnd_URL,
 app.use(cors({
-  origin: process.env.FrontEnd_URL,
+  origin: ["http://localhost:5173"],
   credentials: true,
+  methods: ["GET", "POST", "PUT", "DELETE"],
+  allowedHeaders: ["Content-Type", "Authorization"]
 }));
 
 app.use("/",indexRouter);
 app.use("/user",userRouter);
 app.use("/product",productRouter);
+
+// Error handling middleware
+app.use((err, req, res, next) => {
+  console.error(err.stack);
+  res.status(500).json({
+    success: false,
+    message: err.message || 'Internal Server Error'
+  });
+});
+
+// 404 handler
+app.use((req, res) => {
+  res.status(404).json({
+    success: false,
+    message: 'Route not found'
+  });
+});
 
 app.listen(port, () => {
   console.log(`app listening on port ${port}`);
