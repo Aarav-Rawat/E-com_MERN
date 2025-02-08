@@ -1,5 +1,6 @@
 import productModel from "../models/productModel.js";
 import userModel from "../models/userModel.js";
+import orderModel from "../models/orderModel.js";
 
 export const addToCart = async (req, res) => {
   try {
@@ -78,27 +79,52 @@ export const userProfile = async (req, res) => {
 
 export const userOrder = async (req, res) => {
   try {
+    console.log("Order request body:", req.body); // Debug log
+    console.log("User from token:", req.user); // Debug log
+
+    const { items } = req.body;
+    
+    if (!items || items.length === 0) {
+      return res.status(400).json({
+        success: false,
+        message: "No items in order"
+      });
+    }
+
+    // Find the user
     const user = await userModel.findOne({ email: req.user.email });
-    console.log(user);
-    const cart = user.cart;
-    await userModel.updateOne(
-      { email: req.user.email },
-      {
-        $push: { orders: cart },
-        $set: { cart: [] },
-      }
-    );
+    if (!user) {
+      return res.status(404).json({
+        success: false,
+        message: "User not found"
+      });
+    }
 
-    await Promise.all(
-      cart.map(async (id) => {
-        await productModel.findOneAndUpdate({ _id: id },
-           {$push: {buyers: user._id }});
-      })
-    );
+    // Create new order
+    const newOrder = new orderModel({
+      user: user._id,
+      items: items,
+      status: 'pending'
+    });
 
-    res.status(200).send("Order Placed");
+    await newOrder.save();
+
+    // Clear user's cart
+    user.cart = [];
+    await user.save();
+
+    res.status(200).json({
+      success: true,
+      message: "Order placed successfully",
+      orderId: newOrder._id
+    });
+
   } catch (err) {
-    res.status(500).send(err.message);
+    console.error("Order creation error:", err);
+    res.status(500).json({
+      success: false,
+      message: "Error creating order: " + err.message
+    });
   }
 };
 
@@ -120,4 +146,33 @@ export const updateUser = async (req, res) => {
   }
     
    
+};
+
+export const getOrderHistory = async (req, res) => {
+  try {
+    const user = await userModel.findOne({ email: req.user.email });
+    
+    if (!user) {
+      return res.status(404).json({
+        success: false,
+        message: "User not found"
+      });
+    }
+
+    const orders = await orderModel
+      .find({ user: user._id })
+      .populate('items')
+      .sort({ orderDate: -1 });
+
+    res.status(200).json({
+      success: true,
+      orders: orders
+    });
+  } catch (err) {
+    console.error("Get order history error:", err);
+    res.status(500).json({
+      success: false,
+      message: "Error fetching order history"
+    });
+  }
 };

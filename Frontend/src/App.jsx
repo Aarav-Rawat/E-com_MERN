@@ -11,6 +11,7 @@ import Home from "./pages/Home";
 import Navbar from "./components/Navbar"
 import { myContext } from "./context/context";
 import { backend_URL } from './components/config';
+import OrderHistory from './pages/OrderHistory';
 
 // Set default axios configurations
 axios.defaults.baseURL = backend_URL;
@@ -107,6 +108,7 @@ const App = () => {
         ></Route>
         <Route path="/cart" element={<Cart />}></Route>
         <Route path="/edit" element={<Edit setUserName={setUserName} />}></Route>
+        <Route path="/orders" element={<OrderHistory />}></Route>
       </Routes>
     </div>
     </myContext.Provider>

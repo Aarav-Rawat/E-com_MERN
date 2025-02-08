@@ -39,19 +39,33 @@ const Cart = () => {
 
   const placeOrder = async () => {
     try {
-      await axios.post(
+      const token = sessionStorage.getItem('token');
+      if (!token) {
+        toast.error("Please login first");
+        return;
+      }
+
+      // Create order payload with just the product IDs
+      const orderItems = cartItems.map(item => item._id);
+
+      const response = await axios.post(
         `${backend_URL}/user/order`,
-        {},
+        { items: orderItems },
         {
           headers: {
-            Authorization: `Bearer ${value.token}`,
-          },
+            'Authorization': `Bearer ${token}`,
+            'Content-Type': 'application/json'
+          }
         }
       );
-      toast.success("Order Placed Successfully");
-      setCartItems([]);
+
+      if (response.data.success) {
+        toast.success("Order placed successfully!");
+        setCartItems([]); // Clear cart after successful order
+      }
     } catch (err) {
-      console.log(err.message);
+      console.error("Order placement error:", err);
+      toast.error(err.response?.data?.message || "Failed to place order");
     }
   };
 

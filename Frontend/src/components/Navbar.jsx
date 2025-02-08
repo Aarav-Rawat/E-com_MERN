@@ -72,6 +72,13 @@ const Navbar = ({
                     </svg>
                   </div>
                 </Link>
+
+                <Link 
+                  to="/orders" 
+                  className="text-slate-200 hover:text-indigo-400 transition-colors"
+                >
+                  Orders
+                </Link>
                 
                 <button
                   onClick={logout}
