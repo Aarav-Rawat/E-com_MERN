@@ -24,7 +24,8 @@ const Login = ({ setIsAuthenticated, setUserName, setIsSeller }) => {
         setIsAuthenticated(true);
         setUserName(response.data.username);
         setIsSeller(response.data.isSeller);
-        value.setToken(response.data.token);
+        // Store token without JSON.stringify
+        sessionStorage.setItem("token", response.data.token);
         toast.success("Login Successful");
         navigate("/");
       } else {
@@ -32,6 +33,7 @@ const Login = ({ setIsAuthenticated, setUserName, setIsSeller }) => {
       }
     } catch (err) {
       toast.error("Login failed");
+      console.error("Login error:", err);
     }
   };
 

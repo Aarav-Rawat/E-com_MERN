@@ -6,22 +6,34 @@ import { myContext } from "../context/context";
 import { Link } from "react-router-dom";
 
 const Cart = () => {
-  const [cartData, setCartData] = useState([]);
+  const [cartItems, setCartItems] = useState([]);
+  const [loading, setLoading] = useState(true);
   const value = useContext(myContext);
 
   useEffect(() => {
     const fetchData = async () => {
       try {
+        const token = sessionStorage.getItem('token');
+        if (!token) {
+          toast.error("Please login first");
+          return;
+        }
+
         const response = await axios.get(`${backend_URL}/user/cart`, {
           headers: {
-            Authorization: `Bearer ${value.token}`,
-          },
+            Authorization: `Bearer ${token}`
+          }
         });
-        setCartData(response.data);
+
+        setCartItems(response.data);
+        setLoading(false);
       } catch (err) {
-        console.log(err.message);
+        console.error("Cart fetch error:", err);
+        toast.error("Failed to fetch cart items");
+        setLoading(false);
       }
     };
+
     fetchData();
   }, []);
 
@@ -37,15 +49,23 @@ const Cart = () => {
         }
       );
       toast.success("Order Placed Successfully");
-      setCartData([]);
+      setCartItems([]);
     } catch (err) {
       console.log(err.message);
     }
   };
 
   const calculateTotal = () => {
-    return cartData.reduce((total, item) => total + item.price, 0);
+    return cartItems.reduce((total, item) => total + item.price, 0);
   };
+
+  if (loading) {
+    return (
+      <div className="min-h-screen bg-slate-900 flex items-center justify-center">
+        <div className="animate-spin rounded-full h-16 w-16 border-t-2 border-b-2 border-blue-500"></div>
+      </div>
+    );
+  }
 
   return (
     <div className="min-h-screen bg-gradient-to-b from-slate-900 to-slate-800">
@@ -58,7 +78,7 @@ const Cart = () => {
           <p className="text-slate-400">Review and manage your selected items</p>
         </div>
 
-        {cartData.length === 0 ? (
+        {cartItems.length === 0 ? (
           <div className="max-w-md mx-auto">
             <div className="bg-slate-800/50 backdrop-blur-lg rounded-3xl p-8 text-center border border-slate-700/50 shadow-xl">
               <div className="w-20 h-20 bg-slate-700/50 rounded-full flex items-center justify-center mx-auto mb-6">
@@ -81,7 +101,7 @@ const Cart = () => {
           <div className="max-w-6xl mx-auto grid grid-cols-1 lg:grid-cols-3 gap-8">
             {/* Cart Items */}
             <div className="lg:col-span-2 space-y-4">
-              {cartData.map((item, index) => (
+              {cartItems.map((item, index) => (
                 <div 
                   key={index}
                   className="group bg-slate-800/50 backdrop-blur-lg rounded-2xl p-4 border border-slate-700/50 hover:border-indigo-500/50 transition-all duration-300 shadow-lg hover:shadow-xl"

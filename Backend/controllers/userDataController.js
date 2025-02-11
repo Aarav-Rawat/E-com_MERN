@@ -3,25 +3,44 @@ import userModel from "../models/userModel.js";
 
 export const addToCart = async (req, res) => {
   try {
-    await userModel.findOneAndUpdate(
+    console.log(req.user);
+    const user = await userModel.findOneAndUpdate(
       { email: req.user.email },
       { $push: { cart: req.body.productId } }
     );
+    console.log(user);
+    if (!user) {
+      return res.status(404).send("User not found");
+    }
 
     res.status(200).send("Added To Cart");
   } catch (err) {
+    console.error("Error adding to cart:", err);
     res.status(500).send(err.message);
   }
 };
 
 export const getCart = async (req, res) => {
   try {
+    console.log("User from token:", req.user); // Debug log
     const user = await userModel
       .findOne({ email: req.user.email })
       .populate("cart");
+
+    if (!user) {
+      return res.status(404).json({
+        success: false,
+        message: "User not found"
+      });
+    }
+
     res.status(200).json(user.cart);
   } catch (err) {
-    res.status(500).send(err.message);
+    console.error("Get cart error:", err);
+    res.status(500).json({
+      success: false,
+      message: "Error fetching cart items"
+    });
   }
 };
 

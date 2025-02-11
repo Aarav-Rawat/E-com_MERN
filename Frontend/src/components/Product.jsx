@@ -7,21 +7,30 @@ import { backend_URL } from "./config";
 const Product = ({ imgUrl, model, price, id }) => {
   const addToCart = async (id) => {
     try {
-      const token = JSON.parse(sessionStorage.getItem('token'));
+      const token = sessionStorage.getItem('token');
+      
+      if (!token) {
+        toast.error("Please login first");
+        return;
+      }
+
       const response = await axios.post(
         `${backend_URL}/user/cart`,
         { productId: id },
         {
           headers: {
             "Content-Type": "application/json",
-            Authorization: `Bearer ${token}`,
+            Authorization: `Bearer ${token}`
           },
         }
       );
-      toast.success(response.data);
+
+      if (response.data) {
+        toast.success("Product added to cart");
+      }
     } catch(err) {
-      toast.error("Failed to add product to cart");
-      console.log(err.message);
+      console.error("Error details:", err);
+      toast.error(err.response?.data?.message || "Failed to add product to cart");
     }
   };
 
