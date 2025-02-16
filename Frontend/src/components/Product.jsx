@@ -7,18 +7,20 @@ import { backend_URL } from "./config";
 const Product = ({ imgUrl, model, price, id }) => {
   const addToCart = async (id) => {
     try {
+      const token = JSON.parse(sessionStorage.getItem('token'));
       const response = await axios.post(
-        backend_URL + "/user/cart",
+        `${backend_URL}/user/cart`,
         { productId: id },
         {
           headers: {
             "Content-Type": "application/json",
-            Authorization: `Bearer ${JSON.parse(sessionStorage.getItem('token'))}`,
+            Authorization: `Bearer ${token}`,
           },
         }
       );
       toast.success(response.data);
     } catch(err) {
+      toast.error("Failed to add product to cart");
       console.log(err.message);
     }
   };
@@ -37,8 +39,11 @@ const Product = ({ imgUrl, model, price, id }) => {
           {model}
         </h3>
         <p className="text-slate-400 mt-2">₹{price.toLocaleString()}</p>
-        <button className="w-full mt-4 py-3 rounded-xl bg-gradient-to-r from-indigo-600/10 to-purple-600/10 text-indigo-400 font-medium hover:from-indigo-600 hover:to-purple-600 hover:text-white transition-all duration-300 border border-indigo-500/20 hover:border-transparent">
-          View Details
+        <button
+          onClick={() => addToCart(id)}
+          className="w-full mt-4 py-3 rounded-xl bg-gradient-to-r from-indigo-600/10 to-purple-600/10 text-indigo-400 font-medium hover:from-indigo-600 hover:to-purple-600 hover:text-white transition-all duration-300 border border-indigo-500/20 hover:border-transparent"
+        >
+          Add to Cart
         </button>
       </div>
     </div>

@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
 axios.defaults.withCredentials = true;
-import {backend_URL} from "../components/config"
+import { backend_URL } from "../components/config";
 import Product from "../components/Product";
 
 const Home = ({ updateProductData }) => {

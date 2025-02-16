@@ -17,9 +17,9 @@ app.use(express.json());
 app.use(express.static('public'));
 app.use(express.urlencoded({ extended: true }));
 app.use(cookieParser());
-// origin: process.env.FrontEnd_URL,
 app.use(cors({
-  origin: ["http://localhost:5173"],
+  // origin: ["http://localhost:5173"],
+  origin: process.env.FrontEnd_URL,
   credentials: true,
   methods: ["GET", "POST", "PUT", "DELETE"],
   allowedHeaders: ["Content-Type", "Authorization"]
