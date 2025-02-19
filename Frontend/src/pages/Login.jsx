@@ -7,8 +7,8 @@ import { backend_URL } from "../components/config";
 import { myContext } from "../context/context";
 
 const Login = ({ setIsAuthenticated, setUserName, setIsSeller }) => {
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
+  const [email, setEmail] = useState("aarav@gmail.com");
+  const [password, setPassword] = useState("aarav");
   const value = useContext(myContext);
   const navigate = useNavigate();
 
@@ -60,6 +60,7 @@ const Login = ({ setIsAuthenticated, setUserName, setIsSeller }) => {
                 <input
                   type="email"
                   required
+                  value={email}
                   onChange={(e) => setEmail(e.target.value)}
                   className="w-full px-4 py-3 rounded-xl bg-slate-900/50 border border-slate-700/50 text-slate-100 placeholder-slate-500 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-transparent transition-all duration-200"
                   placeholder="Enter your email"
@@ -74,6 +75,7 @@ const Login = ({ setIsAuthenticated, setUserName, setIsSeller }) => {
                 <input
                   type="password"
                   required
+                  value={password}
                   onChange={(e) => setPassword(e.target.value)}
                   className="w-full px-4 py-3 rounded-xl bg-slate-900/50 border border-slate-700/50 text-slate-100 placeholder-slate-500 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-transparent transition-all duration-200"
                   placeholder="Enter your password"
