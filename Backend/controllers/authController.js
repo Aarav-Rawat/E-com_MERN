@@ -5,7 +5,7 @@ import genToken from "../utils/genToken.js";
 export const createUser = async (req, res) => {
  
   try {
-    const { fullname, email, password,seller} = req.body;
+    const { fullname, email, password, seller} = req.body;
      
     let user = await userModel.findOne({ email });
     if (user) {
