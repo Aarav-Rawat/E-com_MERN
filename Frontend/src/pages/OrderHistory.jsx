@@ -2,10 +2,13 @@ import React, { useEffect, useState } from "react";
 import axios from "axios";
 import { toast } from "react-toastify";
 import { backend_URL } from "../components/config";
+import { useNavigate } from "react-router-dom";
 
 const OrderHistory = () => {
   const [orders, setOrders] = useState([]);
   const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
+  const navigate = useNavigate();
 
   useEffect(() => {
     const fetchOrders = async () => {
@@ -13,6 +16,7 @@ const OrderHistory = () => {
         const token = sessionStorage.getItem('token');
         if (!token) {
           toast.error("Please login first");
+          navigate('/login');
           return;
         }
 
@@ -22,19 +26,39 @@ const OrderHistory = () => {
           }
         });
 
+        console.log("Order response:", response.data); // Debug log
+
         if (response.data.success) {
           setOrders(response.data.orders);
+        } else {
+          setError(response.data.message);
+          toast.error(response.data.message);
         }
       } catch (err) {
         console.error("Order history fetch error:", err);
-        toast.error("Failed to fetch order history");
+        const errorMessage = err.response?.data?.message || "Failed to fetch order history";
+        setError(errorMessage);
+        toast.error(errorMessage);
       } finally {
         setLoading(false);
       }
     };
 
     fetchOrders();
-  }, []);
+  }, [navigate]);
+
+  const getStatusColor = (status) => {
+    switch (status) {
+      case 'delivered':
+        return 'bg-green-500/10 text-green-400';
+      case 'processing':
+        return 'bg-yellow-500/10 text-yellow-400';
+      case 'cancelled':
+        return 'bg-red-500/10 text-red-400';
+      default:
+        return 'bg-slate-500/10 text-slate-400';
+    }
+  };
 
   if (loading) {
     return (
@@ -68,12 +92,11 @@ const OrderHistory = () => {
                       Date: {new Date(order.orderDate).toLocaleDateString()}
                     </p>
                   </div>
-                  <span className={`px-4 py-2 rounded-full text-sm font-medium ${
-                    order.status === 'completed' ? 'bg-green-500/10 text-green-400' :
-                    order.status === 'cancelled' ? 'bg-red-500/10 text-red-400' :
-                    'bg-yellow-500/10 text-yellow-400'
-                  }`}>
-                    {order.status.charAt(0).toUpperCase() + order.status.slice(1)}
+                  <span className={`px-4 py-2 rounded-full text-sm font-medium ${getStatusColor(order.status)}`}>
+                    {order.status === 'delivered' ? 'Delivered' : 
+                     order.status === 'processing' ? 'Processing' : 
+                     order.status === 'cancelled' ? 'Cancelled' : 
+                     order.status}
                   </span>
                 </div>
                 <div className="divide-y divide-slate-700/50">

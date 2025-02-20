@@ -1,6 +1,6 @@
-import productModel from "../models/productModel.js";
-import userModel from "../models/userModel.js";
 import orderModel from "../models/orderModel.js";
+import userModel from "../models/userModel.js";
+import productModel from "../models/productModel.js";
 
 export const addToCart = async (req, res) => {
   try {
@@ -79,9 +79,6 @@ export const userProfile = async (req, res) => {
 
 export const userOrder = async (req, res) => {
   try {
-    console.log("Order request body:", req.body); // Debug log
-    console.log("User from token:", req.user); // Debug log
-
     const { items } = req.body;
     
     if (!items || items.length === 0) {
@@ -91,27 +88,19 @@ export const userOrder = async (req, res) => {
       });
     }
 
-    // Find the user
-    const user = await userModel.findOne({ email: req.user.email });
-    if (!user) {
-      return res.status(404).json({
-        success: false,
-        message: "User not found"
-      });
-    }
-
-    // Create new order
+    // Create new order with 'delivered' status
     const newOrder = new orderModel({
-      user: user._id,
+      user: req.user._id,
       items: items,
-      status: 'pending'
+      status: 'delivered'  // Explicitly set status to 'delivered'
     });
 
     await newOrder.save();
 
     // Clear user's cart
-    user.cart = [];
-    await user.save();
+    await userModel.findByIdAndUpdate(req.user._id, {
+      $set: { cart: [] }
+    });
 
     res.status(200).json({
       success: true,
@@ -150,8 +139,10 @@ export const updateUser = async (req, res) => {
 
 export const getOrderHistory = async (req, res) => {
   try {
+    console.log("Getting orders for user:", req.user); // Debug log
+
+    // Find user first
     const user = await userModel.findOne({ email: req.user.email });
-    
     if (!user) {
       return res.status(404).json({
         success: false,
@@ -159,20 +150,28 @@ export const getOrderHistory = async (req, res) => {
       });
     }
 
+    // Find orders for user with populated items
     const orders = await orderModel
       .find({ user: user._id })
-      .populate('items')
+      .populate({
+        path: 'items',
+        model: 'product',
+        select: 'model price image'
+      })
       .sort({ orderDate: -1 });
 
-    res.status(200).json({
+    console.log("Found orders:", orders); // Debug log
+
+    return res.status(200).json({
       success: true,
       orders: orders
     });
+
   } catch (err) {
-    console.error("Get order history error:", err);
-    res.status(500).json({
+    console.error("Order history error:", err);
+    return res.status(500).json({
       success: false,
-      message: "Error fetching order history"
+      message: "Error fetching order history: " + err.message
     });
   }
 };
